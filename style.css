@@ -6,8 +6,11 @@ body, html {
 }
 
 .pattern-bg {
-  background: url('https://www.transparenttextures.com/patterns/symphony.png');
+  background: url('pink-purple-bg.png') no-repeat center center;
+  background-size: cover;
+  background-attachment: fixed; 
 }
+
 
 header {
   text-align: center;
@@ -169,23 +172,23 @@ footer {
 }
 
 
-  @media (max-width: 600px) {
-    .nav-container {
-      flex-direction: row;         /* 👈 Keep it horizontal */
-      flex-wrap: wrap;             /* 👈 Allow wrapping */
-      justify-content: center;
-      gap: 10px 20px;              /* Row and column spacing */
-      padding: 12px 10px;
-    }
-  
-    .top-nav a {
-      padding: 6px 12px;
-      font-size: 0.9rem;
-      flex: 0 1 auto;              /* Allow flexible resizing */
-    }
-  
-    header {
-      padding-top: 100px; /* Adjust as needed based on nav height */
-    }
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: row;      
+    flex-wrap: wrap;            
+    justify-content: center;
+    gap: 10px 20px;              
+    padding: 12px 10px;
   }
+
+  .top-nav a {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    flex: 0 1 auto;              
+  }
+
+  header {
+    padding-top: 100px; 
+  }
+}
   
