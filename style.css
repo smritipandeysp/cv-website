@@ -238,6 +238,23 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
+.column-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.column-cards .card {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 12px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: #fff;
+}
+
 
 @media (max-width: 600px) {
   .nav-container {
