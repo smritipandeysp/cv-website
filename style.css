@@ -227,6 +227,18 @@ footer {
   box-shadow: 0 8px 16px rgba(0,0,0,0.15);
 }
 
+/* Smaller cards for certificate section */
+.small-cards .card {
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.small-cards {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
 
 @media (max-width: 600px) {
   .nav-container {
