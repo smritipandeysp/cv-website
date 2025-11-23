@@ -183,10 +183,34 @@
         </div>
       </a>
 
-      <!-- POWER BI EMBED (no arrow since not a clickable card) -->
-      <iframe title="Data Analysis" width="600" height="373.5"
-        src="https://app.powerbi.com/view?r=eyJrIjoiMzU1ODY2ZTktNDNhMS00ZDU0LWI0MzktYmY0NWVhMTdlNTZmIiwidCI6ImZkMjA2NzE1LTc1MDktNGFlNS05Yjk2LTc2YmI5Nzg4NmE4NCIsImMiOjEwfQ%3D%3D"
-      frameborder="0" allowFullScreen="true"></iframe>
+      <!-- RESPONSIVE POWER BI EMBED -->
+      <div style="
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        padding-bottom: 60%; 
+        height: 0;
+        overflow: hidden;
+        border-radius: 18px;
+        margin-top: 20px;
+      ">
+        <iframe 
+          title="Data Analysis"
+          src="https://app.powerbi.com/view?r=eyJrIjoiMzU1ODY2ZTktNDNhMS00ZDU0LWI0MzktYmY0NWVhMTdlNTZmIiwidCI6ImZkMjA2NzE1LTc1MDktNGFlNS05Yjk2LTc2YmI5Nzg4NmE4NCIsImMiOjEwfQ%3D%3D"
+          frameborder="0"
+          allowFullScreen="true"
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 18px;
+          ">
+        </iframe>
+      </div>
+
 
     </div>
   </section>
