@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Smriti Pandey | Portfolio</title>
 
-  <!-- keep your no-cache meta -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <!-- Fonts + Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
@@ -18,364 +16,338 @@
     :root{
       --bg: #fff7fb;
       --pink: #ff4fa3;
-      --pink-2: #ff7ac2;
-      --rose: #ff2f8a;
-      --ink: #29112e;
-      --muted: #6b5b71;
-      --card: rgba(255,255,255,0.74);
+      --pink2:#ff7ac2;
+      --rose:#ff2f8a;
+      --ink:#241027;
+      --muted:#6b5b71;
+
+      --card: rgba(255,255,255,0.76);
       --stroke: rgba(255,79,163,0.18);
-      --shadow: 0 18px 50px rgba(41,17,46,0.10);
-      --shadow-soft: 0 10px 30px rgba(41,17,46,0.08);
-      --radius-xl: 26px;
-      --radius-lg: 20px;
-      --radius-md: 16px;
+      --shadow: 0 18px 55px rgba(36,16,39,0.12);
+      --shadowSoft: 0 10px 28px rgba(36,16,39,0.08);
+
+      --rXL: 26px;
+      --rLG: 20px;
+      --rMD: 16px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    *{ box-sizing:border-box; }
+    html{ scroll-behavior:smooth; }
     body{
-      margin: 0;
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      color: var(--ink);
+      margin:0;
+      font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--ink);
       background:
-        radial-gradient(900px 500px at 10% 5%, rgba(255,79,163,0.20), transparent 60%),
-        radial-gradient(800px 520px at 90% 0%, rgba(255,122,194,0.18), transparent 55%),
+        radial-gradient(900px 520px at 10% 5%, rgba(255,79,163,0.20), transparent 60%),
+        radial-gradient(820px 540px at 90% 0%, rgba(255,122,194,0.18), transparent 55%),
         radial-gradient(900px 600px at 50% 100%, rgba(255,47,138,0.14), transparent 55%),
         linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
-      overflow-x: hidden;
+      overflow-x:hidden;
     }
+    a{ color:inherit; text-decoration:none; }
 
-    a{ color: inherit; text-decoration: none; }
     .container{
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 18px;
+      max-width:1140px;
+      margin:0 auto;
+      padding:0 18px;
     }
 
-    /* Decorative blobs */
+    /* background blobs */
     .blob{
-      position: absolute;
-      inset: auto;
-      width: 420px;
-      height: 420px;
+      position:absolute;
+      width:420px; height:420px;
       filter: blur(26px);
-      opacity: 0.55;
-      border-radius: 999px;
-      z-index: -1;
-      animation: floaty 10s ease-in-out infinite;
+      opacity:0.55;
+      border-radius:999px;
+      z-index:-1;
+      animation: floaty 12s ease-in-out infinite;
     }
     .blob.one{
-      top: -140px; left: -140px;
+      top:-150px; left:-150px;
       background: radial-gradient(circle at 30% 30%, rgba(255,79,163,0.95), rgba(255,79,163,0.02) 70%);
       animation-duration: 12s;
     }
     .blob.two{
-      top: -160px; right: -170px;
+      top:-170px; right:-180px;
       background: radial-gradient(circle at 30% 30%, rgba(255,122,194,0.95), rgba(255,122,194,0.02) 70%);
       animation-duration: 14s;
     }
     .blob.three{
-      bottom: -220px; left: 15%;
+      bottom:-240px; left:15%;
       background: radial-gradient(circle at 30% 30%, rgba(255,47,138,0.85), rgba(255,47,138,0.02) 70%);
       animation-duration: 13s;
     }
     @keyframes floaty{
-      0%,100% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(18px, 14px) scale(1.03); }
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(18px, 14px) scale(1.03); }
     }
 
-    /* Top Nav */
+    /* nav */
     .nav-wrap{
-      position: sticky;
-      top: 0;
-      z-index: 40;
+      position:sticky;
+      top:0;
+      z-index:50;
       backdrop-filter: blur(14px);
-      background: rgba(255,255,255,0.70);
+      background: rgba(255,255,255,0.72);
       border-bottom: 1px solid rgba(255,79,163,0.12);
     }
     .nav{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 12px 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:12px 0;
     }
     .brand{
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:-0.02em;
     }
     .brand-badge{
-      width: 38px; height: 38px;
-      border-radius: 14px;
+      width:38px; height:38px;
+      border-radius:14px;
       background: linear-gradient(135deg, rgba(255,79,163,1), rgba(255,122,194,1));
       box-shadow: 0 12px 30px rgba(255,79,163,0.22);
-      display: grid;
-      place-items: center;
-      color: white;
-      transform: translateZ(0);
+      display:grid;
+      place-items:center;
+      color:white;
     }
-    .brand span{ font-size: 0.98rem; }
     .nav-links{
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:8px;
     }
     .nav-links a{
-      font-weight: 600;
-      font-size: 0.92rem;
-      color: rgba(41,17,46,0.86);
-      padding: 10px 12px;
-      border-radius: 999px;
-      transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+      font-weight:700;
+      font-size:0.92rem;
+      color: rgba(36,16,39,0.86);
+      padding:10px 12px;
+      border-radius:999px;
+      transition: transform 180ms ease, background 180ms ease;
     }
     .nav-links a:hover{
       background: rgba(255,79,163,0.10);
       transform: translateY(-1px);
     }
     .nav-links a.active{
-      background: linear-gradient(135deg, rgba(255,79,163,0.16), rgba(255,122,194,0.12));
-      color: rgba(41,17,46,0.96);
+      background: linear-gradient(135deg, rgba(255,79,163,0.18), rgba(255,122,194,0.12));
       box-shadow: 0 10px 26px rgba(255,79,163,0.10);
     }
 
-    /* Hero */
-    .hero{
-      position: relative;
-      padding: 44px 0 28px;
-    }
+    /* hero */
+    header.hero{ padding: 44px 0 22px; position:relative; }
     .hero-grid{
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 18px;
-      align-items: stretch;
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap:16px;
+      align-items:stretch;
     }
     .panel{
       background: var(--card);
       border: 1px solid var(--stroke);
       box-shadow: var(--shadow);
-      border-radius: var(--radius-xl);
+      border-radius: var(--rXL);
       padding: 22px;
-      position: relative;
-      overflow: hidden;
+      position:relative;
+      overflow:hidden;
     }
     .panel::after{
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background: radial-gradient(600px 220px at 18% 20%, rgba(255,79,163,0.18), transparent 60%),
-                  radial-gradient(600px 220px at 85% 0%, rgba(255,122,194,0.14), transparent 55%);
-      pointer-events: none;
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(700px 240px at 18% 18%, rgba(255,79,163,0.18), transparent 62%),
+        radial-gradient(700px 240px at 85% 0%, rgba(255,122,194,0.14), transparent 58%);
+      pointer-events:none;
     }
-
-    .hero-left{
-      display: grid;
-      gap: 14px;
-      padding: 24px;
-    }
+    .hero-left{ padding: 26px; display:grid; gap:14px; }
     .kicker{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-      color: rgba(41,17,46,0.86);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:800;
       background: rgba(255,79,163,0.10);
       border: 1px solid rgba(255,79,163,0.16);
       padding: 8px 12px;
-      border-radius: 999px;
+      border-radius:999px;
       width: fit-content;
-      position: relative;
-      z-index: 1;
+      position:relative;
+      z-index:1;
     }
     .kicker i{ color: var(--pink); }
     h1{
-      margin: 0;
+      margin:0;
       font-size: clamp(2.0rem, 3.8vw, 3.1rem);
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      position: relative;
-      z-index: 1;
+      letter-spacing:-0.04em;
+      line-height:1.05;
+      position:relative;
+      z-index:1;
     }
     .sub{
-      margin: 0;
+      margin:0;
       color: var(--muted);
-      line-height: 1.6;
-      font-size: 1.01rem;
-      position: relative;
-      z-index: 1;
-      max-width: 62ch;
+      line-height:1.65;
+      font-size:1.02rem;
+      position:relative;
+      z-index:1;
+      max-width: 64ch;
     }
+
     .cta-row{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 4px;
-      position: relative;
-      z-index: 1;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      position:relative;
+      z-index:1;
+      margin-top: 2px;
     }
     .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
       padding: 11px 15px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.95rem;
+      border-radius:999px;
+      font-weight:800;
+      font-size:0.95rem;
       border: 1px solid rgba(255,79,163,0.22);
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      transition: transform 180ms ease, box-shadow 180ms ease;
       will-change: transform;
     }
     .btn.primary{
-      background: linear-gradient(135deg, var(--pink), var(--pink-2));
-      color: white;
-      box-shadow: 0 14px 34px rgba(255,79,163,0.26);
-      border-color: rgba(255,79,163,0.0);
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      color:white;
+      border-color: transparent;
+      box-shadow: 0 14px 36px rgba(255,79,163,0.26);
     }
-    .btn.primary:hover{ transform: translateY(-1px); box-shadow: 0 18px 40px rgba(255,79,163,0.30); }
+    .btn.primary:hover{ transform: translateY(-1px); box-shadow: 0 18px 44px rgba(255,79,163,0.30); }
     .btn.ghost{
-      background: rgba(255,255,255,0.60);
-      color: rgba(41,17,46,0.92);
+      background: rgba(255,255,255,0.65);
+      color: rgba(36,16,39,0.92);
     }
-    .btn.ghost:hover{ transform: translateY(-1px); box-shadow: var(--shadow-soft); }
+    .btn.ghost:hover{ transform: translateY(-1px); box-shadow: var(--shadowSoft); }
 
     .chips{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 6px;
-      position: relative;
-      z-index: 1;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      position:relative;
+      z-index:1;
+      margin-top: 4px;
     }
     .chip{
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: rgba(41,17,46,0.82);
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.70);
+      font-size:0.85rem;
+      font-weight:800;
+      color: rgba(36,16,39,0.82);
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.72);
       border: 1px solid rgba(255,79,163,0.14);
     }
 
+    /* photo card */
     .hero-right{
-      display: grid;
-      gap: 12px;
       padding: 18px;
-    }
-    .profile{
-      display: grid;
-      grid-template-columns: auto 1fr;
+      display:grid;
       gap: 12px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
     }
-    .avatar{
-      width: 64px; height: 64px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, rgba(255,79,163,1), rgba(255,122,194,1));
-      display: grid;
-      place-items: center;
-      color: white;
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      box-shadow: 0 16px 40px rgba(255,79,163,0.22);
+    .photo-card{
+      position:relative;
+      z-index:1;
+      display:grid;
+      gap: 12px;
+      align-items:center;
     }
-    .profile h3{
-      margin: 0;
-      font-size: 1.05rem;
-      letter-spacing: -0.02em;
+    .photo-frame{
+      width:100%;
+      border-radius: var(--rXL);
+      padding: 14px;
+      background:
+        linear-gradient(135deg, rgba(255,79,163,0.14), rgba(255,122,194,0.10));
+      border: 1px solid rgba(255,79,163,0.18);
+      box-shadow: var(--shadowSoft);
+      overflow:hidden;
     }
-    .profile p{
-      margin: 4px 0 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.4;
+    .photo{
+      width:100%;
+      aspect-ratio: 4 / 5;
+      border-radius: calc(var(--rXL) - 10px);
+      object-fit: cover;
+      display:block;
+      background: rgba(255,255,255,0.55);
+      border: 1px solid rgba(255,79,163,0.14);
+      transform: translateZ(0);
     }
-
-    .contact-mini{
-      display: grid;
-      gap: 10px;
-      position: relative;
-      z-index: 1;
+    .quick-contact{
+      display:grid;
+      gap:10px;
+      position:relative;
+      z-index:1;
     }
     .mini{
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display:flex;
+      align-items:center;
+      gap:10px;
       padding: 12px 12px;
-      border-radius: var(--radius-md);
-      background: rgba(255,255,255,0.62);
+      border-radius: var(--rMD);
+      background: rgba(255,255,255,0.66);
       border: 1px solid rgba(255,79,163,0.14);
+      box-shadow: var(--shadowSoft);
       transition: transform 180ms ease, box-shadow 180ms ease;
     }
-    .mini:hover{ transform: translateY(-1px); box-shadow: var(--shadow-soft); }
+    .mini:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
     .mini i{
-      width: 34px; height: 34px;
+      width: 34px; height:34px;
       border-radius: 14px;
-      display: grid;
-      place-items: center;
+      display:grid;
+      place-items:center;
       background: rgba(255,79,163,0.12);
       color: var(--pink);
+      flex: 0 0 auto;
     }
     .mini span{
-      font-weight: 700;
-      font-size: 0.93rem;
-      color: rgba(41,17,46,0.90);
-      overflow-wrap: anywhere;
-    }
-    .mini small{
-      display:block;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.80rem;
-      margin-top: 2px;
+      font-weight:800;
+      font-size:0.93rem;
+      color: rgba(36,16,39,0.90);
+      overflow-wrap:anywhere;
     }
 
-    /* Sections */
-    section{
-      padding: 18px 0;
-    }
+    /* sections */
+    section{ padding: 18px 0; }
     .section-head{
       display:flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:12px;
       margin: 12px 0 12px;
     }
     .section-title{
       display:flex;
       align-items:center;
-      gap: 10px;
-      margin: 0;
+      gap:10px;
+      margin:0;
       font-size: 1.25rem;
-      letter-spacing: -0.02em;
+      letter-spacing:-0.02em;
     }
     .section-title i{ color: var(--pink); }
-    .section-note{
-      margin: 0;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.92rem;
-    }
 
-    /* Cards / grids */
+    /* cards */
     .grid{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 14px;
     }
     .card{
-      background: rgba(255,255,255,0.70);
+      background: rgba(255,255,255,0.74);
       border: 1px solid rgba(255,79,163,0.14);
-      border-radius: var(--radius-lg);
-      padding: 14px 14px;
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
+      border-radius: var(--rLG);
+      padding: 14px;
+      box-shadow: var(--shadowSoft);
+      position:relative;
+      overflow:hidden;
       transition: transform 180ms ease, box-shadow 180ms ease;
       will-change: transform;
     }
@@ -383,208 +355,156 @@
 
     .card-row{
       display:flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
     }
     .card-left{
       display:flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
     .ico{
-      width: 40px;
-      height: 40px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
+      width:40px; height:40px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
       background: linear-gradient(135deg, rgba(255,79,163,0.16), rgba(255,122,194,0.10));
       border: 1px solid rgba(255,79,163,0.16);
       color: var(--pink);
       flex: 0 0 auto;
     }
     .card h3{
-      margin: 0;
-      font-size: 1.0rem;
-      letter-spacing: -0.02em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      margin:0;
+      font-size:1.0rem;
+      letter-spacing:-0.02em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
     .card p{
-      margin: 6px 0 0;
+      margin:6px 0 0;
       color: var(--muted);
-      font-size: 0.92rem;
-      line-height: 1.5;
+      font-size:0.92rem;
+      line-height:1.5;
     }
     .arrow{
-      color: rgba(41,17,46,0.52);
-      flex: 0 0 auto;
+      color: rgba(36,16,39,0.55);
       transition: transform 180ms ease, color 180ms ease;
+      flex: 0 0 auto;
     }
-    .card:hover .arrow{ transform: translateX(2px); color: rgba(41,17,46,0.74); }
+    .card:hover .arrow{ transform: translateX(2px); color: rgba(36,16,39,0.78); }
 
-    /* Timeline for Work */
-    .timeline{
-      display: grid;
-      gap: 12px;
-    }
-    .timeline-item{
-      position: relative;
-    }
-    .timeline-item .card{
-      padding-left: 16px;
-    }
-    .timeline-item::before{
-      content:"";
-      position:absolute;
-      left: 14px;
-      top: 14px;
-      bottom: 14px;
-      width: 2px;
-      background: linear-gradient(180deg, rgba(255,79,163,0.0), rgba(255,79,163,0.30), rgba(255,79,163,0.0));
-    }
-    .timeline-dot{
-      position:absolute;
-      left: 7px;
-      top: 18px;
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--pink), var(--pink-2));
-      box-shadow: 0 12px 30px rgba(255,79,163,0.24);
-      border: 3px solid rgba(255,255,255,0.9);
-    }
-
-    /* Power BI Embed */
+    /* Power BI embed */
     .embed{
       margin-top: 14px;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
+      border-radius: var(--rXL);
+      overflow:hidden;
       border: 1px solid rgba(255,79,163,0.16);
       box-shadow: var(--shadow);
-      background: rgba(255,255,255,0.70);
+      background: rgba(255,255,255,0.76);
     }
-    .embed .ratio{
-      position: relative;
-      width: 100%;
+    .ratio{
+      position:relative;
+      width:100%;
       padding-bottom: 60%;
-      height: 0;
+      height:0;
     }
-    .embed iframe{
+    iframe{
       position:absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
     }
 
-    /* Certificates accordion */
+    /* cert accordion */
     details{
-      background: rgba(255,255,255,0.70);
+      background: rgba(255,255,255,0.74);
       border: 1px solid rgba(255,79,163,0.14);
-      border-radius: var(--radius-lg);
-      padding: 12px 12px;
-      box-shadow: var(--shadow-soft);
+      border-radius: var(--rLG);
+      padding: 12px;
+      box-shadow: var(--shadowSoft);
     }
     details + details{ margin-top: 10px; }
     summary{
-      cursor: pointer;
-      list-style: none;
+      cursor:pointer;
+      list-style:none;
       display:flex;
       align-items:center;
-      justify-content: space-between;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
+      justify-content:space-between;
+      gap:12px;
+      font-weight:900;
+      letter-spacing:-0.02em;
     }
     summary::-webkit-details-marker{ display:none; }
     .sum-left{
       display:flex;
       align-items:center;
-      gap: 10px;
-      min-width: 0;
+      gap:10px;
+      min-width:0;
     }
-    .sum-left .ico{ width: 36px; height: 36px; border-radius: 14px; }
     .sum-right{
-      color: rgba(41,17,46,0.55);
+      color: rgba(36,16,39,0.55);
       transition: transform 180ms ease;
     }
     details[open] .sum-right{ transform: rotate(180deg); }
-    .cert-links{
-      margin-top: 10px;
-      display:grid;
-      gap: 10px;
-    }
+    .cert-links{ margin-top:10px; display:grid; gap:10px; }
 
-    /* Languages */
+    /* languages */
     .pill{
-      text-align: center;
+      text-align:center;
       padding: 14px 12px;
-      font-weight: 800;
+      font-weight:900;
     }
     .pill small{
       display:block;
-      margin-top: 6px;
-      font-weight: 700;
+      margin-top:6px;
+      font-weight:800;
       color: var(--muted);
-      font-size: 0.85rem;
+      font-size:0.85rem;
     }
 
-    /* Footer */
-    footer{
-      padding: 26px 0 36px;
-      color: rgba(41,17,46,0.72);
-      text-align:center;
-    }
-    .foot-card{
-      display:inline-block;
-      padding: 12px 16px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.60);
-      border: 1px solid rgba(255,79,163,0.14);
-    }
-
-    /* Scroll reveal */
+    /* reveal anim */
     .reveal{
-      opacity: 0;
+      opacity:0;
       transform: translateY(12px) scale(0.99);
       transition: opacity 520ms ease, transform 520ms ease;
     }
     .reveal.show{
-      opacity: 1;
+      opacity:1;
       transform: translateY(0) scale(1);
     }
 
-    /* Small screens */
+    footer{
+      padding: 22px 0 34px;
+      text-align:center;
+      color: rgba(36,16,39,0.62);
+      font-weight:700;
+    }
+
     @media (max-width: 900px){
       .hero-grid{ grid-template-columns: 1fr; }
       .nav{ flex-direction: column; align-items: stretch; }
-      .nav-links{ justify-content: flex-start; }
+      .nav-links{ justify-content:flex-start; }
+      .ratio{ padding-bottom: 82%; }
     }
     @media (max-width: 520px){
-      .brand span{ display:none; }
-      .btn{ width: 100%; justify-content:center; }
-      .cta-row{ gap: 10px; }
-      .embed .ratio{ padding-bottom: 82%; }
+      .btn{ width:100%; }
     }
-
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
-      *{ animation: none !important; transition: none !important; }
-      html{ scroll-behavior: auto; }
+      *{ animation:none !important; transition:none !important; }
+      html{ scroll-behavior:auto; }
     }
   </style>
 </head>
 
 <body>
-  <!-- dreamy blobs -->
   <div class="blob one"></div>
   <div class="blob two"></div>
   <div class="blob three"></div>
 
-  <!-- NAV -->
   <div class="nav-wrap">
     <div class="container">
       <div class="nav">
@@ -604,65 +524,54 @@
     </div>
   </div>
 
-  <!-- HERO -->
   <header class="hero" id="top">
     <div class="container">
       <div class="hero-grid">
         <div class="panel hero-left reveal">
-          <div class="kicker"><i class="fa-solid fa-heart"></i> Pink-powered, results-driven portfolio</div>
+          <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> Portfolio</div>
           <h1>Smriti Pandey</h1>
           <p class="sub">
-            Robotics &amp; AI Engineering Graduate (KMITL) — I build products that mix data + engineering + clean UX.
-            Here’s my work, projects, and certifications (all hosted via Google Drive links).
+            I’m a Data Analyst with a background in Robotics and AI Engineering who enjoys mixing analytical thinking with creativity to build data-driven solutions that are easy to understand. I work across analytics, visualization, and frontend design, and I love turning complex information into clear, intuitive experiences people actually enjoy using.
           </p>
 
           <div class="cta-row">
             <a class="btn primary" href="https://www.linkedin.com/in/smriti-pandey-395675293/" target="_blank" rel="noopener">
-              <i class="fa-brands fa-linkedin"></i> Connect on LinkedIn
+              <i class="fa-brands fa-linkedin"></i> LinkedIn
             </a>
             <a class="btn ghost" href="https://drive.google.com/file/d/1PZ4FwrOG6SYaZanZz3MYCzAhMVbgZ4u7/view?usp=sharing" target="_blank" rel="noopener">
-              <i class="fa-solid fa-file-arrow-down"></i> View CV
+              <i class="fa-solid fa-file-arrow-down"></i> CV
             </a>
           </div>
 
           <div class="chips">
-            <span class="chip"><i class="fa-solid fa-robot"></i> Robotics</span>
-            <span class="chip"><i class="fa-solid fa-chart-simple"></i> Data</span>
-            <span class="chip"><i class="fa-solid fa-code"></i> Full-stack</span>
-            <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> UI/UX</span>
+            <span class="chip"><i class="fa-solid fa-chart-column"></i> Analytics</span>
+            <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> Visualization</span>
+            <span class="chip"><i class="fa-solid fa-code"></i> Frontend</span>
+            <span class="chip"><i class="fa-solid fa-robot"></i> Robotics + AI</span>
           </div>
         </div>
 
         <div class="panel hero-right reveal">
-          <div class="profile">
-            <div class="avatar">SP</div>
-            <div>
-              <h3>Quick Contact</h3>
-              <p>Fastest way to reach me is email.</p>
+          <div class="photo-card">
+            <div class="photo-frame">
+              <!-- Google Drive direct view URL -->
+              <img
+                class="photo"
+                alt="Smriti Pandey"
+                src="https://drive.google.com/uc?export=view&id=1X1OXRaMdmODvyOOY8DWlieIAJ7QnBWum"
+                loading="lazy"
+              />
             </div>
-          </div>
 
-          <div class="contact-mini">
-            <a class="mini" href="mailto:smriti2546@outlook.com">
-              <i class="fa-solid fa-envelope"></i>
-              <div>
+            <div class="quick-contact">
+              <a class="mini" href="mailto:smriti2546@outlook.com">
+                <i class="fa-solid fa-envelope"></i>
                 <span>smriti2546@outlook.com</span>
-                <small>Email</small>
-              </div>
-            </a>
-            <a class="mini" href="tel:+66825690518">
-              <i class="fa-solid fa-phone"></i>
-              <div>
+              </a>
+              <a class="mini" href="tel:+66825690518">
+                <i class="fa-solid fa-phone"></i>
                 <span>+66 82 569 0518</span>
-                <small>Phone</small>
-              </div>
-            </a>
-            <div class="mini" role="note" aria-label="Portfolio note">
-              <i class="fa-solid fa-circle-info"></i>
-              <div>
-                <span>All links open in new tab</span>
-                <small>GitHub Pages friendly</small>
-              </div>
+              </a>
             </div>
           </div>
         </div>
@@ -670,72 +579,60 @@
     </div>
   </header>
 
-  <!-- WORK -->
   <section id="work">
     <div class="container">
       <div class="section-head reveal">
         <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
-        <p class="section-note">Clickable cards → open your original links</p>
       </div>
 
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <span class="timeline-dot" aria-hidden="true"></span>
-          <a class="card" href="https://drive.google.com/file/d/101LzYIPsisejkvgynFbjPICxe-U1x589/view" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-solid fa-building-columns"></i></div>
-                <div>
-                  <h3>Investment Planning Analyst — ExxonMobil</h3>
-                  <p>May–Dec 2024 · Streamlined economic assessments &amp; led strategy analytics.</p>
-                </div>
+      <!-- Clean cards (no timeline bar = fixes the weird white strip) -->
+      <div class="grid">
+        <a class="card reveal" href="https://drive.google.com/file/d/101LzYIPsisejkvgynFbjPICxe-U1x589/view" target="_blank" rel="noopener">
+          <div class="card-row">
+            <div class="card-left">
+              <div class="ico"><i class="fa-solid fa-building-columns"></i></div>
+              <div>
+                <h3>Investment Planning Analyst — ExxonMobil</h3>
+                <p>May–Dec 2024 · Streamlined economic assessments &amp; led strategy analytics.</p>
               </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
             </div>
-          </a>
-        </div>
+            <i class="fa-solid fa-arrow-right arrow"></i>
+          </div>
+        </a>
 
-        <div class="timeline-item reveal">
-          <span class="timeline-dot" aria-hidden="true"></span>
-          <a class="card" href="https://www.canva.com/design/DAFm6CaDdqQ/XPSeSpZw91fFdKe_4sFXEw/view" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-solid fa-flask"></i></div>
-                <div>
-                  <h3>Research Intern — Tokai University</h3>
-                  <p>May–July 2023 · Developed R Shiny apps for retail data analysis.</p>
-                </div>
+        <a class="card reveal" href="https://www.canva.com/design/DAFm6CaDdqQ/XPSeSpZw91fFdKe_4sFXEw/view" target="_blank" rel="noopener">
+          <div class="card-row">
+            <div class="card-left">
+              <div class="ico"><i class="fa-solid fa-flask"></i></div>
+              <div>
+                <h3>Research Intern — Tokai University</h3>
+                <p>May–July 2023 · Developed R Shiny apps for retail data analysis.</p>
               </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
             </div>
-          </a>
-        </div>
+            <i class="fa-solid fa-arrow-right arrow"></i>
+          </div>
+        </a>
 
-        <div class="timeline-item reveal">
-          <span class="timeline-dot" aria-hidden="true"></span>
-          <a class="card" href="https://www.facebook.com/krishholidaythailand/" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-solid fa-bullhorn"></i></div>
-                <div>
-                  <h3>Social Media Coordinator — Krishholiday</h3>
-                  <p>Nov 2021–Present · Branding, content, and itinerary design.</p>
-                </div>
+        <a class="card reveal" href="https://www.facebook.com/krishholidaythailand/" target="_blank" rel="noopener">
+          <div class="card-row">
+            <div class="card-left">
+              <div class="ico"><i class="fa-solid fa-bullhorn"></i></div>
+              <div>
+                <h3>Social Media Coordinator — Krishholiday</h3>
+                <p>Nov 2021–Present · Branding, content, and itinerary design.</p>
               </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
             </div>
-          </a>
-        </div>
+            <i class="fa-solid fa-arrow-right arrow"></i>
+          </div>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
       <div class="section-head reveal">
         <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Projects</h2>
-        <p class="section-note">A curated set — tap any card</p>
       </div>
 
       <div class="grid">
@@ -857,10 +754,8 @@
         </a>
       </div>
 
-      <!-- Power BI -->
       <div class="section-head reveal" style="margin-top:18px;">
-        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Power BI Showcase</h2>
-        <p class="section-note">Embedded report</p>
+        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Power BI</h2>
       </div>
 
       <div class="embed reveal">
@@ -875,18 +770,16 @@
     </div>
   </section>
 
-  <!-- CERTIFICATES -->
   <section id="certificates">
     <div class="container">
       <div class="section-head reveal">
         <h2 class="section-title"><i class="fa-solid fa-scroll"></i> Certifications</h2>
-        <p class="section-note">Expandable list (clean + compact)</p>
       </div>
 
       <details class="reveal">
         <summary>
           <span class="sum-left">
-            <span class="ico"><i class="fa-solid fa-cloud"></i></span>
+            <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-cloud"></i></span>
             AWS / Cloud
           </span>
           <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
@@ -910,7 +803,7 @@
       <details class="reveal">
         <summary>
           <span class="sum-left">
-            <span class="ico"><i class="fa-solid fa-chart-line"></i></span>
+            <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-chart-line"></i></span>
             Data / Analytics
           </span>
           <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
@@ -973,7 +866,7 @@
       <details class="reveal">
         <summary>
           <span class="sum-left">
-            <span class="ico"><i class="fa-solid fa-award"></i></span>
+            <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-award"></i></span>
             Internships / Events
           </span>
           <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
@@ -1022,37 +915,24 @@
     </div>
   </section>
 
-  <!-- LANGUAGES -->
   <section id="languages">
     <div class="container">
       <div class="section-head reveal">
         <h2 class="section-title"><i class="fa-solid fa-language"></i> Languages</h2>
-        <p class="section-note">Quick overview</p>
       </div>
 
       <div class="grid">
-        <div class="card pill reveal">
-          English
-          <small>Fluent (IELTS 8)</small>
-        </div>
-        <div class="card pill reveal">
-          Thai
-          <small>Fluent</small>
-        </div>
-        <div class="card pill reveal">
-          Hindi
-          <small>Fluent</small>
-        </div>
+        <div class="card pill reveal">English <small>Fluent (IELTS 8)</small></div>
+        <div class="card pill reveal">Thai <small>Fluent</small></div>
+        <div class="card pill reveal">Hindi <small>Fluent</small></div>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
   <section id="education">
     <div class="container">
       <div class="section-head reveal">
         <h2 class="section-title"><i class="fa-solid fa-user-graduate"></i> Education</h2>
-        <p class="section-note">Where I studied</p>
       </div>
 
       <div class="grid">
@@ -1080,52 +960,15 @@
           </div>
         </div>
       </div>
-
-      <div class="section-head reveal" style="margin-top:14px;">
-        <h2 class="section-title"><i class="fa-solid fa-paper-plane"></i> Let’s talk</h2>
-        <p class="section-note">Open to roles &amp; collaborations</p>
-      </div>
-
-      <div class="grid">
-        <a class="card reveal" href="mailto:smriti2546@outlook.com">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-envelope"></i></div>
-              <div>
-                <h3>Email me</h3>
-                <p>smriti2546@outlook.com</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.linkedin.com/in/smriti-pandey-395675293/" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-brands fa-linkedin"></i></div>
-              <div>
-                <h3>LinkedIn</h3>
-                <p>Message me directly</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-      </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">
-      <div class="foot-card">
-        <strong>© 2025 Smriti Pandey</strong> · Made with 💗 in one HTML file
-      </div>
-    </div>
+    © 2025 Smriti Pandey
   </footer>
 
   <script>
-    // Scroll-reveal
+    // Scroll reveal
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -1137,7 +980,7 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // Active nav highlighting
+    // Active nav link
     const navLinks = Array.from(document.querySelectorAll('#navLinks a'));
     const sections = navLinks
       .map(a => document.querySelector(a.getAttribute('href')))
