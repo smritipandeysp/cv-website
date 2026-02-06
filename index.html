@@ -14,14 +14,14 @@
 
   <style>
     :root{
-      --bg: #fff7fb;
-      --pink: #ff4fa3;
+      --bg:#fff7fb;
+      --pink:#ff4fa3;
       --pink2:#ff7ac2;
       --rose:#ff2f8a;
       --ink:#241027;
       --muted:#6b5b71;
 
-      --card: rgba(255,255,255,0.76);
+      --card: rgba(255,255,255,0.78);
       --stroke: rgba(255,79,163,0.18);
       --shadow: 0 18px 55px rgba(36,16,39,0.12);
       --shadowSoft: 0 10px 28px rgba(36,16,39,0.08);
@@ -45,12 +45,7 @@
       overflow-x:hidden;
     }
     a{ color:inherit; text-decoration:none; }
-
-    .container{
-      max-width:1140px;
-      margin:0 auto;
-      padding:0 18px;
-    }
+    .container{ max-width:1140px; margin:0 auto; padding:0 18px; }
 
     /* background blobs */
     .blob{
@@ -62,18 +57,15 @@
       z-index:-1;
       animation: floaty 12s ease-in-out infinite;
     }
-    .blob.one{
-      top:-150px; left:-150px;
+    .blob.one{ top:-150px; left:-150px;
       background: radial-gradient(circle at 30% 30%, rgba(255,79,163,0.95), rgba(255,79,163,0.02) 70%);
       animation-duration: 12s;
     }
-    .blob.two{
-      top:-170px; right:-180px;
+    .blob.two{ top:-170px; right:-180px;
       background: radial-gradient(circle at 30% 30%, rgba(255,122,194,0.95), rgba(255,122,194,0.02) 70%);
       animation-duration: 14s;
     }
-    .blob.three{
-      bottom:-240px; left:15%;
+    .blob.three{ bottom:-240px; left:15%;
       background: radial-gradient(circle at 30% 30%, rgba(255,47,138,0.85), rgba(255,47,138,0.02) 70%);
       animation-duration: 13s;
     }
@@ -88,7 +80,7 @@
       top:0;
       z-index:50;
       backdrop-filter: blur(14px);
-      background: rgba(255,255,255,0.72);
+      background: rgba(255,255,255,0.74);
       border-bottom: 1px solid rgba(255,79,163,0.12);
     }
     .nav{
@@ -99,39 +91,25 @@
       padding:12px 0;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:800;
-      letter-spacing:-0.02em;
+      display:flex; align-items:center; gap:10px;
+      font-weight:900; letter-spacing:-0.02em;
     }
     .brand-badge{
-      width:38px; height:38px;
-      border-radius:14px;
+      width:38px; height:38px; border-radius:14px;
       background: linear-gradient(135deg, rgba(255,79,163,1), rgba(255,122,194,1));
       box-shadow: 0 12px 30px rgba(255,79,163,0.22);
-      display:grid;
-      place-items:center;
-      color:white;
+      display:grid; place-items:center; color:white;
     }
     .nav-links{
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-      gap:8px;
+      display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
     }
     .nav-links a{
-      font-weight:700;
-      font-size:0.92rem;
+      font-weight:800; font-size:0.92rem;
       color: rgba(36,16,39,0.86);
-      padding:10px 12px;
-      border-radius:999px;
+      padding:10px 12px; border-radius:999px;
       transition: transform 180ms ease, background 180ms ease;
     }
-    .nav-links a:hover{
-      background: rgba(255,79,163,0.10);
-      transform: translateY(-1px);
-    }
+    .nav-links a:hover{ background: rgba(255,79,163,0.10); transform: translateY(-1px); }
     .nav-links a.active{
       background: linear-gradient(135deg, rgba(255,79,163,0.18), rgba(255,122,194,0.12));
       box-shadow: 0 10px 26px rgba(255,79,163,0.10);
@@ -139,79 +117,100 @@
 
     /* hero */
     header.hero{ padding: 44px 0 22px; position:relative; }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap:16px;
-      align-items:stretch;
-    }
-    .panel{
+    .hero-wrap{
       background: var(--card);
       border: 1px solid var(--stroke);
       box-shadow: var(--shadow);
       border-radius: var(--rXL);
-      padding: 22px;
+      padding: 26px;
       position:relative;
       overflow:hidden;
     }
-    .panel::after{
+    .hero-wrap::after{
       content:"";
-      position:absolute;
-      inset:-2px;
+      position:absolute; inset:-2px;
       background:
-        radial-gradient(700px 240px at 18% 18%, rgba(255,79,163,0.18), transparent 62%),
-        radial-gradient(700px 240px at 85% 0%, rgba(255,122,194,0.14), transparent 58%);
+        radial-gradient(720px 240px at 18% 18%, rgba(255,79,163,0.18), transparent 62%),
+        radial-gradient(720px 240px at 85% 0%, rgba(255,122,194,0.14), transparent 58%);
       pointer-events:none;
     }
-    .hero-left{ padding: 26px; display:grid; gap:14px; }
+
+    .hero-top{
+      position:relative; z-index:1;
+      display:flex; align-items:center; justify-content:space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .name-row{
+      display:flex; align-items:center; gap:14px;
+      min-width: 0;
+    }
+
+    /* circular photo beside name */
+    .avatar-ring{
+      width: 86px; height: 86px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,79,163,0.85), rgba(255,122,194,0.85));
+      padding: 4px;
+      box-shadow: 0 18px 45px rgba(255,79,163,0.22);
+      flex: 0 0 auto;
+    }
+    .avatar{
+      width: 100%; height: 100%;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      overflow: hidden;
+      border: 1px solid rgba(255,79,163,0.18);
+    }
+    .avatar img{
+      width:100%; height:100%;
+      object-fit: cover;
+      display:block;
+      transform: translateZ(0);
+    }
+
+    h1{
+      margin:0;
+      font-size: clamp(1.9rem, 3.6vw, 3.0rem);
+      letter-spacing:-0.04em;
+      line-height:1.05;
+      white-space: normal;
+    }
+
     .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:800;
+      display:inline-flex; align-items:center; gap:8px;
+      font-weight:900;
       background: rgba(255,79,163,0.10);
       border: 1px solid rgba(255,79,163,0.16);
       padding: 8px 12px;
       border-radius:999px;
       width: fit-content;
-      position:relative;
-      z-index:1;
     }
     .kicker i{ color: var(--pink); }
-    h1{
-      margin:0;
-      font-size: clamp(2.0rem, 3.8vw, 3.1rem);
-      letter-spacing:-0.04em;
-      line-height:1.05;
-      position:relative;
-      z-index:1;
-    }
+
     .sub{
-      margin:0;
+      margin: 12px 0 0;
       color: var(--muted);
       line-height:1.65;
       font-size:1.02rem;
-      position:relative;
-      z-index:1;
-      max-width: 64ch;
+      max-width: 80ch;
+      position:relative; z-index:1;
     }
 
-    .cta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      position:relative;
-      z-index:1;
-      margin-top: 2px;
-    }
-    .btn{
-      display:inline-flex;
+    .hero-actions{
+      position:relative; z-index:1;
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top: 14px;
       align-items:center;
-      justify-content:center;
-      gap:10px;
+      justify-content: space-between;
+    }
+
+    .cta-row{ display:flex; flex-wrap:wrap; gap:10px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding: 11px 15px;
       border-radius:999px;
-      font-weight:800;
+      font-weight:900;
       font-size:0.95rem;
       border: 1px solid rgba(255,79,163,0.22);
       transition: transform 180ms ease, box-shadow 180ms ease;
@@ -219,8 +218,7 @@
     }
     .btn.primary{
       background: linear-gradient(135deg, var(--pink), var(--pink2));
-      color:white;
-      border-color: transparent;
+      color:white; border-color: transparent;
       box-shadow: 0 14px 36px rgba(255,79,163,0.26);
     }
     .btn.primary:hover{ transform: translateY(-1px); box-shadow: 0 18px 44px rgba(255,79,163,0.30); }
@@ -230,17 +228,37 @@
     }
     .btn.ghost:hover{ transform: translateY(-1px); box-shadow: var(--shadowSoft); }
 
+    .contact-inline{
+      display:flex; flex-wrap:wrap; gap:10px;
+    }
+    .pill-link{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.66);
+      border: 1px solid rgba(255,79,163,0.14);
+      box-shadow: var(--shadowSoft);
+      font-weight: 900;
+      font-size: 0.92rem;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .pill-link:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
+    .pill-link i{
+      width: 30px; height:30px;
+      border-radius: 999px;
+      display:grid; place-items:center;
+      background: rgba(255,79,163,0.12);
+      color: var(--pink);
+    }
+
     .chips{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      position:relative;
-      z-index:1;
-      margin-top: 4px;
+      position:relative; z-index:1;
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 12px;
     }
     .chip{
       font-size:0.85rem;
-      font-weight:800;
+      font-weight:900;
       color: rgba(36,16,39,0.82);
       padding:8px 10px;
       border-radius:999px;
@@ -248,96 +266,24 @@
       border: 1px solid rgba(255,79,163,0.14);
     }
 
-    /* photo card */
-    .hero-right{
-      padding: 18px;
-      display:grid;
-      gap: 12px;
-    }
-    .photo-card{
-      position:relative;
-      z-index:1;
-      display:grid;
-      gap: 12px;
-      align-items:center;
-    }
-    .photo-frame{
-      width:100%;
-      border-radius: var(--rXL);
-      padding: 14px;
-      background:
-        linear-gradient(135deg, rgba(255,79,163,0.14), rgba(255,122,194,0.10));
-      border: 1px solid rgba(255,79,163,0.18);
-      box-shadow: var(--shadowSoft);
-      overflow:hidden;
-    }
-    .photo{
-      width:100%;
-      aspect-ratio: 4 / 5;
-      border-radius: calc(var(--rXL) - 10px);
-      object-fit: cover;
-      display:block;
-      background: rgba(255,255,255,0.55);
-      border: 1px solid rgba(255,79,163,0.14);
-      transform: translateZ(0);
-    }
-    .quick-contact{
-      display:grid;
-      gap:10px;
-      position:relative;
-      z-index:1;
-    }
-    .mini{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding: 12px 12px;
-      border-radius: var(--rMD);
-      background: rgba(255,255,255,0.66);
-      border: 1px solid rgba(255,79,163,0.14);
-      box-shadow: var(--shadowSoft);
-      transition: transform 180ms ease, box-shadow 180ms ease;
-    }
-    .mini:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
-    .mini i{
-      width: 34px; height:34px;
-      border-radius: 14px;
-      display:grid;
-      place-items:center;
-      background: rgba(255,79,163,0.12);
-      color: var(--pink);
-      flex: 0 0 auto;
-    }
-    .mini span{
-      font-weight:800;
-      font-size:0.93rem;
-      color: rgba(36,16,39,0.90);
-      overflow-wrap:anywhere;
-    }
-
     /* sections */
     section{ padding: 18px 0; }
     .section-head{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      margin: 12px 0 12px;
+      display:flex; align-items:baseline; justify-content:space-between;
+      gap:12px; margin: 12px 0 12px;
     }
     .section-title{
-      display:flex;
-      align-items:center;
-      gap:10px;
+      display:flex; align-items:center; gap:10px;
       margin:0;
       font-size: 1.25rem;
       letter-spacing:-0.02em;
     }
     .section-title i{ color: var(--pink); }
 
-    /* cards */
+    /* grid/cards */
     .grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 14px;
     }
     .card{
@@ -350,20 +296,23 @@
       overflow:hidden;
       transition: transform 180ms ease, box-shadow 180ms ease;
       will-change: transform;
+      min-width: 0;
     }
     .card:hover{ transform: translateY(-2px); box-shadow: var(--shadow); }
 
     .card-row{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       justify-content:space-between;
       gap:12px;
+      min-width:0;
     }
     .card-left{
       display:flex;
-      align-items:center;
+      align-items:flex-start;
       gap:12px;
-      min-width:0;
+      min-width:0; /* critical for wrapping */
+      flex: 1 1 auto;
     }
     .ico{
       width:40px; height:40px;
@@ -374,29 +323,40 @@
       border: 1px solid rgba(255,79,163,0.16);
       color: var(--pink);
       flex: 0 0 auto;
+      margin-top: 2px;
     }
+
+    /* FIX: allow wrapping instead of overflow */
     .card h3{
       margin:0;
-      font-size:1.0rem;
+      font-size: 1.0rem;
       letter-spacing:-0.02em;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
+      white-space: normal;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; /* 2 lines */
+      line-clamp: 2;
+      word-break: break-word;
     }
+
     .card p{
       margin:6px 0 0;
       color: var(--muted);
       font-size:0.92rem;
       line-height:1.5;
+      overflow-wrap:anywhere;
     }
+
     .arrow{
       color: rgba(36,16,39,0.55);
       transition: transform 180ms ease, color 180ms ease;
       flex: 0 0 auto;
+      margin-top: 6px;
     }
     .card:hover .arrow{ transform: translateX(2px); color: rgba(36,16,39,0.78); }
 
-    /* Power BI embed */
+    /* embed */
     .embed{
       margin-top: 14px;
       border-radius: var(--rXL);
@@ -405,19 +365,8 @@
       box-shadow: var(--shadow);
       background: rgba(255,255,255,0.76);
     }
-    .ratio{
-      position:relative;
-      width:100%;
-      padding-bottom: 60%;
-      height:0;
-    }
-    iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
+    .ratio{ position:relative; width:100%; padding-bottom: 60%; height:0; }
+    iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
     /* cert accordion */
     details{
@@ -429,26 +378,13 @@
     }
     details + details{ margin-top: 10px; }
     summary{
-      cursor:pointer;
-      list-style:none;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      font-weight:900;
-      letter-spacing:-0.02em;
+      cursor:pointer; list-style:none;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      font-weight:900; letter-spacing:-0.02em;
     }
     summary::-webkit-details-marker{ display:none; }
-    .sum-left{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-    .sum-right{
-      color: rgba(36,16,39,0.55);
-      transition: transform 180ms ease;
-    }
+    .sum-left{ display:flex; align-items:center; gap:10px; min-width:0; }
+    .sum-right{ color: rgba(36,16,39,0.55); transition: transform 180ms ease; }
     details[open] .sum-right{ transform: rotate(180deg); }
     .cert-links{ margin-top:10px; display:grid; gap:10px; }
 
@@ -466,7 +402,7 @@
       font-size:0.85rem;
     }
 
-    /* reveal anim */
+    /* reveal */
     .reveal{
       opacity:0;
       transform: translateY(12px) scale(0.99);
@@ -481,17 +417,20 @@
       padding: 22px 0 34px;
       text-align:center;
       color: rgba(36,16,39,0.62);
-      font-weight:700;
+      font-weight:800;
     }
 
+    /* responsive rules */
     @media (max-width: 900px){
-      .hero-grid{ grid-template-columns: 1fr; }
       .nav{ flex-direction: column; align-items: stretch; }
       .nav-links{ justify-content:flex-start; }
       .ratio{ padding-bottom: 82%; }
+      .hero-actions{ justify-content:flex-start; gap: 12px; }
     }
     @media (max-width: 520px){
       .btn{ width:100%; }
+      .pill-link{ width:100%; justify-content:flex-start; }
+      .avatar-ring{ width: 76px; height: 76px; }
     }
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important; }
@@ -526,14 +465,31 @@
 
   <header class="hero" id="top">
     <div class="container">
-      <div class="hero-grid">
-        <div class="panel hero-left reveal">
-          <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> Portfolio</div>
-          <h1>Smriti Pandey</h1>
-          <p class="sub">
-            I’m a Data Analyst with a background in Robotics and AI Engineering who enjoys mixing analytical thinking with creativity to build data-driven solutions that are easy to understand. I work across analytics, visualization, and frontend design, and I love turning complex information into clear, intuitive experiences people actually enjoy using.
-          </p>
+      <div class="hero-wrap reveal">
+        <div class="hero-top">
+          <div class="name-row">
+            <div class="avatar-ring" aria-hidden="true">
+              <div class="avatar">
+                <img
+                  alt="Smriti Pandey"
+                  src="https://drive.google.com/uc?export=view&id=1X1OXRaMdmODvyOOY8DWlieIAJ7QnBWum"
+                  loading="lazy"
+                />
+              </div>
+            </div>
 
+            <div style="min-width:0;">
+              <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> Portfolio</div>
+              <h1>Smriti Pandey</h1>
+            </div>
+          </div>
+        </div>
+
+        <p class="sub">
+          I’m a Data Analyst with a background in Robotics and AI Engineering who enjoys mixing analytical thinking with creativity to build data-driven solutions that are easy to understand. I work across analytics, visualization, and frontend design, and I love turning complex information into clear, intuitive experiences people actually enjoy using.
+        </p>
+
+        <div class="hero-actions">
           <div class="cta-row">
             <a class="btn primary" href="https://www.linkedin.com/in/smriti-pandey-395675293/" target="_blank" rel="noopener">
               <i class="fa-brands fa-linkedin"></i> LinkedIn
@@ -543,37 +499,23 @@
             </a>
           </div>
 
-          <div class="chips">
-            <span class="chip"><i class="fa-solid fa-chart-column"></i> Analytics</span>
-            <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> Visualization</span>
-            <span class="chip"><i class="fa-solid fa-code"></i> Frontend</span>
-            <span class="chip"><i class="fa-solid fa-robot"></i> Robotics + AI</span>
+          <div class="contact-inline">
+            <a class="pill-link" href="mailto:smriti2546@outlook.com">
+              <i class="fa-solid fa-envelope"></i>
+              <span>smriti2546@outlook.com</span>
+            </a>
+            <a class="pill-link" href="tel:+66825690518">
+              <i class="fa-solid fa-phone"></i>
+              <span>+66 82 569 0518</span>
+            </a>
           </div>
         </div>
 
-        <div class="panel hero-right reveal">
-          <div class="photo-card">
-            <div class="photo-frame">
-              <!-- Google Drive direct view URL -->
-              <img
-                class="photo"
-                alt="Smriti Pandey"
-                src="https://drive.google.com/uc?export=view&id=1X1OXRaMdmODvyOOY8DWlieIAJ7QnBWum"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="quick-contact">
-              <a class="mini" href="mailto:smriti2546@outlook.com">
-                <i class="fa-solid fa-envelope"></i>
-                <span>smriti2546@outlook.com</span>
-              </a>
-              <a class="mini" href="tel:+66825690518">
-                <i class="fa-solid fa-phone"></i>
-                <span>+66 82 569 0518</span>
-              </a>
-            </div>
-          </div>
+        <div class="chips">
+          <span class="chip"><i class="fa-solid fa-chart-column"></i> Analytics</span>
+          <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> Visualization</span>
+          <span class="chip"><i class="fa-solid fa-code"></i> Frontend</span>
+          <span class="chip"><i class="fa-solid fa-robot"></i> Robotics + AI</span>
         </div>
       </div>
     </div>
@@ -585,13 +527,12 @@
         <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
       </div>
 
-      <!-- Clean cards (no timeline bar = fixes the weird white strip) -->
       <div class="grid">
         <a class="card reveal" href="https://drive.google.com/file/d/101LzYIPsisejkvgynFbjPICxe-U1x589/view" target="_blank" rel="noopener">
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-building-columns"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Investment Planning Analyst — ExxonMobil</h3>
                 <p>May–Dec 2024 · Streamlined economic assessments &amp; led strategy analytics.</p>
               </div>
@@ -604,7 +545,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-flask"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Research Intern — Tokai University</h3>
                 <p>May–July 2023 · Developed R Shiny apps for retail data analysis.</p>
               </div>
@@ -617,7 +558,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-bullhorn"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Social Media Coordinator — Krishholiday</h3>
                 <p>Nov 2021–Present · Branding, content, and itinerary design.</p>
               </div>
@@ -640,7 +581,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-globe"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Capstone — RAI One</h3>
                 <p>Web app · Inventory &amp; role-based modules</p>
               </div>
@@ -653,7 +594,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-robot"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Mini Delivery Robot</h3>
                 <p>Robotics · Build &amp; demo</p>
               </div>
@@ -666,7 +607,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-heart-pulse"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Heart Disease Prediction</h3>
                 <p>ML · Classification + insights</p>
               </div>
@@ -679,7 +620,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-road"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Line Following Robot</h3>
                 <p>Controls · Sensors + logic</p>
               </div>
@@ -692,7 +633,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-seedling"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Automatic Crop Grower</h3>
                 <p>IoT · Automation concept</p>
               </div>
@@ -705,7 +646,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-hand"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>5DOF Robot Arm</h3>
                 <p>Mechanics · Motion + design</p>
               </div>
@@ -718,7 +659,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-plane"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>TraveLink App</h3>
                 <p>App · Travel concept demo</p>
               </div>
@@ -731,7 +672,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-bullseye"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Object Tracking</h3>
                 <p>Vision · Tracking pipeline</p>
               </div>
@@ -744,7 +685,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-city"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>Smart City — SafeLink</h3>
                 <p>Prototype · Safety reporting app</p>
               </div>
@@ -789,7 +730,7 @@
             <div class="card-row">
               <div class="card-left">
                 <div class="ico"><i class="fa-brands fa-aws"></i></div>
-                <div>
+                <div style="min-width:0;">
                   <h3>AWS Cloud Foundations</h3>
                   <p>Certificate</p>
                 </div>
@@ -813,7 +754,7 @@
             <div class="card-row">
               <div class="card-left">
                 <div class="ico"><i class="fa-brands fa-google"></i></div>
-                <div>
+                <div style="min-width:0;">
                   <h3>Google: Data Driven Decisions</h3>
                   <p>Certificate</p>
                 </div>
@@ -826,7 +767,7 @@
             <div class="card-row">
               <div class="card-left">
                 <div class="ico"><i class="fa-brands fa-google"></i></div>
-                <div>
+                <div style="min-width:0;">
                   <h3>Google: Data Everywhere</h3>
                   <p>Certificate</p>
                 </div>
@@ -839,7 +780,7 @@
             <div class="card-row">
               <div class="card-left">
                 <div class="ico"><i class="fa-solid fa-square-root-variable"></i></div>
-                <div>
+                <div style="min-width:0;">
                   <h3>MATLAB: Data Analysis</h3>
                   <p>Certificate</p>
                 </div>
@@ -852,7 +793,7 @@
             <div class="card-row">
               <div class="card-left">
                 <div class="ico"><i class="fa-solid fa-diagram-project"></i></div>
-                <div>
+                <div style="min-width:0;">
                   <h3>IBM: ETL &amp; Data Pipelines (Shell, Airflow, Kafka)</h3>
                   <p>Certificate</p>
                 </div>
@@ -876,7 +817,7 @@
             <div class="card-row">
               <div class="card-left">
                 <div class="ico"><i class="fa-solid fa-graduation-cap"></i></div>
-                <div>
+                <div style="min-width:0;">
                   <h3>Tokai Completion Certificate</h3>
                   <p>Certificate</p>
                 </div>
@@ -889,7 +830,7 @@
             <div class="card-row">
               <div class="card-left">
                 <div class="ico"><i class="fa-solid fa-people-group"></i></div>
-                <div>
+                <div style="min-width:0;">
                   <h3>InterHack Tourism Hackathon</h3>
                   <p>Certificate</p>
                 </div>
@@ -902,7 +843,7 @@
             <div class="card-row">
               <div class="card-left">
                 <div class="ico"><i class="fa-solid fa-briefcase"></i></div>
-                <div>
+                <div style="min-width:0;">
                   <h3>ExxonMobil Internship</h3>
                   <p>Certificate</p>
                 </div>
@@ -940,7 +881,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-school"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>B.E. in Robotics &amp; AI — KMITL, Thailand</h3>
                 <p>Aug 2021 – Apr 2025</p>
               </div>
@@ -952,7 +893,7 @@
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-book-open"></i></div>
-              <div>
+              <div style="min-width:0;">
                 <h3>ISC Board Highschool — G.N.F.C.S, India</h3>
                 <p>Mar 2013 – Apr 2021</p>
               </div>
@@ -968,7 +909,7 @@
   </footer>
 
   <script>
-    // Scroll reveal
+    // Reveal on scroll
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -980,14 +921,14 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // Active nav link
+    // Active nav highlighting
     const navLinks = Array.from(document.querySelectorAll('#navLinks a'));
     const sections = navLinks
       .map(a => document.querySelector(a.getAttribute('href')))
       .filter(Boolean);
 
     const setActive = () => {
-      const y = window.scrollY + 120;
+      const y = window.scrollY + 130;
       let current = sections[0]?.id || '';
       for (const sec of sections) {
         if (sec.offsetTop <= y) current = sec.id;
@@ -997,7 +938,6 @@
         a.classList.toggle('active', target === current);
       });
     };
-
     window.addEventListener('scroll', setActive, { passive: true });
     window.addEventListener('load', setActive);
   </script>
