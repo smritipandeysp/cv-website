@@ -17,7 +17,6 @@
       --bg:#fff7fb;
       --pink:#ff4fa3;
       --pink2:#ff7ac2;
-      --rose:#ff2f8a;
       --ink:#241027;
       --muted:#6b5b71;
 
@@ -32,9 +31,11 @@
     }
 
     *{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
+    html{ scroll-behavior:smooth; width:100%; overflow-x:hidden; }
     body{
       margin:0;
+      width:100%;
+      overflow-x:hidden; /* fixes mobile horizontal scroll */
       font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
       color:var(--ink);
       background:
@@ -42,19 +43,21 @@
         radial-gradient(820px 540px at 90% 0%, rgba(255,122,194,0.18), transparent 55%),
         radial-gradient(900px 600px at 50% 100%, rgba(255,47,138,0.14), transparent 55%),
         linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
-      overflow-x:hidden;
     }
     a{ color:inherit; text-decoration:none; }
+    img, iframe{ max-width:100%; } /* safety */
     .container{ max-width:1140px; margin:0 auto; padding:0 18px; }
 
-    /* background blobs */
+    /* blobs (don’t cause overflow) */
     .blob{
       position:absolute;
       width:420px; height:420px;
+      max-width: 92vw;
       filter: blur(26px);
       opacity:0.55;
       border-radius:999px;
       z-index:-1;
+      pointer-events:none;
       animation: floaty 12s ease-in-out infinite;
     }
     .blob.one{ top:-150px; left:-150px;
@@ -76,19 +79,14 @@
 
     /* nav */
     .nav-wrap{
-      position:sticky;
-      top:0;
-      z-index:50;
+      position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
       background: rgba(255,255,255,0.74);
       border-bottom: 1px solid rgba(255,79,163,0.12);
     }
     .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:12px 0;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; padding:12px 0;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
@@ -99,6 +97,7 @@
       background: linear-gradient(135deg, rgba(255,79,163,1), rgba(255,122,194,1));
       box-shadow: 0 12px 30px rgba(255,79,163,0.22);
       display:grid; place-items:center; color:white;
+      flex: 0 0 auto;
     }
     .nav-links{
       display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
@@ -137,13 +136,15 @@
 
     .hero-top{
       position:relative; z-index:1;
-      display:flex; align-items:center; justify-content:space-between;
+      display:flex; align-items:center; justify-content:flex-start;
       gap: 16px;
       flex-wrap: wrap;
+      min-width:0;
     }
     .name-row{
       display:flex; align-items:center; gap:14px;
       min-width: 0;
+      flex: 1 1 auto;
     }
 
     /* circular photo beside name */
@@ -166,7 +167,6 @@
       width:100%; height:100%;
       object-fit: cover;
       display:block;
-      transform: translateZ(0);
     }
 
     h1{
@@ -176,17 +176,6 @@
       line-height:1.05;
       white-space: normal;
     }
-
-    .kicker{
-      display:inline-flex; align-items:center; gap:8px;
-      font-weight:900;
-      background: rgba(255,79,163,0.10);
-      border: 1px solid rgba(255,79,163,0.16);
-      padding: 8px 12px;
-      border-radius:999px;
-      width: fit-content;
-    }
-    .kicker i{ color: var(--pink); }
 
     .sub{
       margin: 12px 0 0;
@@ -230,6 +219,7 @@
 
     .contact-inline{
       display:flex; flex-wrap:wrap; gap:10px;
+      max-width:100%;
     }
     .pill-link{
       display:inline-flex; align-items:center; gap:10px;
@@ -241,6 +231,11 @@
       font-weight: 900;
       font-size: 0.92rem;
       transition: transform 180ms ease, box-shadow 180ms ease;
+      max-width: 100%;
+      min-width: 0;
+    }
+    .pill-link span{
+      overflow-wrap:anywhere;
     }
     .pill-link:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
     .pill-link i{
@@ -249,12 +244,14 @@
       display:grid; place-items:center;
       background: rgba(255,79,163,0.12);
       color: var(--pink);
+      flex: 0 0 auto;
     }
 
     .chips{
       position:relative; z-index:1;
       display:flex; flex-wrap:wrap; gap:8px;
       margin-top: 12px;
+      max-width:100%;
     }
     .chip{
       font-size:0.85rem;
@@ -285,6 +282,7 @@
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 14px;
+      width: 100%;
     }
     .card{
       background: rgba(255,255,255,0.74);
@@ -311,7 +309,7 @@
       display:flex;
       align-items:flex-start;
       gap:12px;
-      min-width:0; /* critical for wrapping */
+      min-width:0;
       flex: 1 1 auto;
     }
     .ico{
@@ -325,8 +323,6 @@
       flex: 0 0 auto;
       margin-top: 2px;
     }
-
-    /* FIX: allow wrapping instead of overflow */
     .card h3{
       margin:0;
       font-size: 1.0rem;
@@ -335,11 +331,10 @@
       overflow: hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2; /* 2 lines */
+      -webkit-line-clamp: 2;
       line-clamp: 2;
       word-break: break-word;
     }
-
     .card p{
       margin:6px 0 0;
       color: var(--muted);
@@ -347,7 +342,6 @@
       line-height:1.5;
       overflow-wrap:anywhere;
     }
-
     .arrow{
       color: rgba(36,16,39,0.55);
       transition: transform 180ms ease, color 180ms ease;
@@ -389,17 +383,10 @@
     .cert-links{ margin-top:10px; display:grid; gap:10px; }
 
     /* languages */
-    .pill{
-      text-align:center;
-      padding: 14px 12px;
-      font-weight:900;
-    }
+    .pill{ text-align:center; padding: 14px 12px; font-weight:900; }
     .pill small{
-      display:block;
-      margin-top:6px;
-      font-weight:800;
-      color: var(--muted);
-      font-size:0.85rem;
+      display:block; margin-top:6px;
+      font-weight:800; color: var(--muted); font-size:0.85rem;
     }
 
     /* reveal */
@@ -420,17 +407,18 @@
       font-weight:800;
     }
 
-    /* responsive rules */
     @media (max-width: 900px){
       .nav{ flex-direction: column; align-items: stretch; }
       .nav-links{ justify-content:flex-start; }
       .ratio{ padding-bottom: 82%; }
-      .hero-actions{ justify-content:flex-start; gap: 12px; }
+      .hero-actions{ justify-content:flex-start; }
     }
     @media (max-width: 520px){
       .btn{ width:100%; }
       .pill-link{ width:100%; justify-content:flex-start; }
-      .avatar-ring{ width: 76px; height: 76px; }
+      .avatar-ring{ width: 72px; height: 72px; }
+      .hero-wrap{ padding: 18px; }
+      .blob{ width: 320px; height: 320px; }
     }
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important; }
@@ -470,16 +458,11 @@
           <div class="name-row">
             <div class="avatar-ring" aria-hidden="true">
               <div class="avatar">
-                <img
-                  alt="Smriti Pandey"
-                  src="/me.jpeg"
-                  loading="lazy"
-                />
+                <img alt="Smriti Pandey" src="./me.jpeg" loading="lazy" />
               </div>
             </div>
 
             <div style="min-width:0;">
-              <div class="kicker"><i class="fa-solid fa-wand-magic-sparkles"></i> Portfolio</div>
               <h1>Smriti Pandey</h1>
             </div>
           </div>
@@ -577,7 +560,7 @@
       </div>
 
       <div class="grid">
-        <a class="card reveal" href="https://apps.rai.kmitl.ac.th" target="_blank" rel="noopener">
+        <a class="card reveal" href="https://apps.rai.kmitl.ac.th/signin" target="_blank" rel="noopener">
           <div class="card-row">
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-globe"></i></div>
@@ -882,7 +865,7 @@
             <div class="card-left">
               <div class="ico"><i class="fa-solid fa-school"></i></div>
               <div style="min-width:0;">
-                <h3>B.E. in Robotics (First Class Honors) &amp; AI — KMITL, Thailand</h3>
+                <h3>B.E. in Robotics &amp; AI — KMITL, Thailand</h3>
                 <p>Aug 2021 – Apr 2025</p>
               </div>
             </div>
@@ -909,7 +892,7 @@
   </footer>
 
   <script>
-    // Reveal on scroll
+    // reveal
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -921,25 +904,24 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // Active nav highlighting
+    // active nav
     const navLinks = Array.from(document.querySelectorAll('#navLinks a'));
-    const sections = navLinks
-      .map(a => document.querySelector(a.getAttribute('href')))
-      .filter(Boolean);
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 
     const setActive = () => {
       const y = window.scrollY + 130;
       let current = sections[0]?.id || '';
-      for (const sec of sections) {
-        if (sec.offsetTop <= y) current = sec.id;
-      }
+      for (const sec of sections) if (sec.offsetTop <= y) current = sec.id;
       navLinks.forEach(a => {
-        const target = (a.getAttribute('href') || '').replace('#', '');
+        const target = (a.getAttribute('href') || '').replace('#','');
         a.classList.toggle('active', target === current);
       });
     };
-    window.addEventListener('scroll', setActive, { passive: true });
+    window.addEventListener('scroll', setActive, { passive:true });
     window.addEventListener('load', setActive);
+
+    // extra safety: if anything still overflows, this prevents sideways scroll on iOS
+    document.addEventListener('touchmove', () => {}, { passive:true });
   </script>
 </body>
 </html>
