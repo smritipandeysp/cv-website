@@ -62,6 +62,7 @@ img{ max-width:100%; display:block; }
   background: rgba(255, 247, 243, .78);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
+  padding: 14px 24px;
 }
 .header__inner{
   display:flex;
