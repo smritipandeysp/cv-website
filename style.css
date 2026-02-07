@@ -262,6 +262,7 @@ img{ max-width:100%; display:block; }
 .section{ padding: 34px 0; }
 
 .card{
+  padding: 0;  
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
   background: rgba(255,255,255,.78);
@@ -294,19 +295,19 @@ img{ max-width:100%; display:block; }
 }
 
 .heroText{
-  padding: 28px 30px 30px;
+  padding: 18px 18px 22px;
 }
 
 .heroText p{
   max-width: 520px;
 }
 
+
 @media (max-width: 768px){
   .heroText{
-    padding: 24px 20px 26px;
+    padding: 18px 16px 20px;
   }
 }
-
 
 .heroImage img{
   width: 100%;
@@ -329,15 +330,18 @@ img{ max-width:100%; display:block; }
 }
 
 
-/* HERO combined card */
 .heroCard{
   display:grid;
   grid-template-columns: 0.92fr 1.08fr;
   gap:24px;
   align-items:center;
+  padding: 18px; 
 }
-@media (max-width: 900px){
-  .heroCard{ grid-template-columns:1fr; }
+
+@media (max-width: 768px){
+  .heroCard{
+    padding: 16px; /* mobile */
+  }
 }
 
 /* Image frame */
