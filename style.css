@@ -1,5 +1,5 @@
 :root{
-  /* Your palette */
+  /* Palette */
   --p1:#FFDADA;
   --p2:#D8A5A5;
   --p3:#A66666;
@@ -7,7 +7,6 @@
   --p5:#762727;
   --p6:#4B0B0B;
 
-  --cream:#FFF7F3;
   --paper:#FFFFFF;
 
   --ink:rgba(75,11,11,.92);
@@ -26,6 +25,12 @@
 
   --serif: ui-serif, "Times New Roman", Georgia, serif;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+  /* Hero photo controls (easy to tweak later) */
+  --hero-img-h: 380px;         /* desktop image height */
+  --hero-img-h-mobile: 280px;  /* mobile image height */
+  --hero-img-pos-desktop: 50%; /* 0% top, 50% center, 100% bottom */
+  --hero-img-pos-mobile: 45%;
 }
 
 *{ box-sizing:border-box; }
@@ -35,11 +40,11 @@ body{
   font-family: var(--sans);
   color: var(--ink);
 
-  /* lighter + consistent */
+  /* light + consistent background */
   background:
-    radial-gradient(900px 520px at 10% 0%, rgba(255,218,218,.32), transparent 62%),
-    radial-gradient(700px 420px at 90% 8%,  rgba(216,165,165,.22), transparent 66%),
-    radial-gradient(800px 520px at 50% 100%, rgba(166,102,102,.14), transparent 70%),
+    radial-gradient(900px 520px at 10% 0%, rgba(255,218,218,.26), transparent 62%),
+    radial-gradient(700px 420px at 90% 8%,  rgba(216,165,165,.18), transparent 66%),
+    radial-gradient(800px 520px at 50% 100%, rgba(166,102,102,.10), transparent 70%),
     #FFFFFF;
 
   background-attachment: fixed;
@@ -64,19 +69,12 @@ img{ max-width:100%; display:block; }
   border-bottom: 1px solid var(--line);
   padding: 14px 24px;
 }
+
 .header__inner{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:14px 0;
   gap:18px;
-}
-.header-left {
-  margin-left: 8px;   
-}
-
-.site-name {
-  margin-left: 6px;
 }
 
 .brand{
@@ -84,6 +82,7 @@ img{ max-width:100%; display:block; }
   align-items:center;
   gap:10px;
 }
+
 .brand__mark{
   width:12px; height:12px;
   border-radius:999px;
@@ -91,11 +90,14 @@ img{ max-width:100%; display:block; }
   box-shadow: 0 0 0 7px rgba(255,218,218,.65);
   border:1px solid rgba(75,11,11,.10);
 }
+
 .brand__name{
   font-family: var(--serif);
   font-weight:600;
   letter-spacing:.2px;
   color: var(--p6);
+  /* If you want it slightly more to the right, increase this */
+  margin-left: 2px;
 }
 
 .nav{
@@ -103,6 +105,7 @@ img{ max-width:100%; display:block; }
   align-items:center;
   gap:14px;
 }
+
 .nav a{
   font-size:14px;
   color:var(--muted);
@@ -110,15 +113,18 @@ img{ max-width:100%; display:block; }
   border-radius:999px;
   transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
+
 .nav a:hover{
   background: rgba(255,218,218,.75);
   color:var(--p6);
 }
+
 .nav a.active{
   background: rgba(216,165,165,.26);
   color: var(--p6);
   border: 1px solid rgba(75,11,11,.10);
 }
+
 .nav .pill{
   border:1px solid var(--line);
   background: rgba(255,255,255,.60);
@@ -134,6 +140,7 @@ img{ max-width:100%; display:block; }
   background: rgba(255,255,255,.55);
   box-shadow: 0 8px 18px rgba(75,11,11,.06);
 }
+
 .navToggle span{
   display:block;
   width:18px;
@@ -145,6 +152,7 @@ img{ max-width:100%; display:block; }
 
 @media (max-width: 860px){
   .navToggle{ display:block; }
+
   .nav{
     position:fixed;
     top: 70px;
@@ -156,10 +164,11 @@ img{ max-width:100%; display:block; }
     padding:16px;
     border:1px solid var(--line);
     border-radius: var(--radius-lg);
-    background: rgba(255,255,255,.90);
+    background: rgba(255,255,255,.92);
     backdrop-filter: blur(12px);
     box-shadow: var(--shadow);
   }
+
   .nav.isOpen{ display:flex; }
   .nav a{ width:100%; text-align:center; }
 }
@@ -185,6 +194,7 @@ img{ max-width:100%; display:block; }
   margin:0 0 6px;
   color: var(--p6);
 }
+
 .kicker{
   display:inline-flex;
   gap:10px;
@@ -197,18 +207,21 @@ img{ max-width:100%; display:block; }
   border-radius:999px;
   margin-bottom:14px;
 }
+
 .kicker .spark{
   width:10px; height:10px;
   border-radius: 999px;
   background: var(--p2);
   border:1px solid rgba(75,11,11,.18);
 }
+
 .lead{
   font-size: 16.5px;
   line-height: 1.65;
   color: var(--muted);
   margin: 0 0 18px;
 }
+
 .muted{ color:var(--muted); }
 
 /* ============ BUTTONS ============ */
@@ -218,6 +231,7 @@ img{ max-width:100%; display:block; }
   flex-wrap:wrap;
   margin: 14px 0 0;
 }
+
 .btn{
   display:inline-flex;
   align-items:center;
@@ -230,16 +244,23 @@ img{ max-width:100%; display:block; }
   transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
   font-size: 14px;
 }
-.btn:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px rgba(75,11,11,.10); }
+
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(75,11,11,.10);
+}
+
 .btn.primary{
   background: linear-gradient(135deg, var(--p6), var(--p5));
   color:#fff;
   border-color: rgba(75,11,11,.20);
 }
+
 .btn.ghost{
   background: rgba(255,255,255,.70);
   color: var(--p6);
 }
+
 .btn.soft{
   background: rgba(255,218,218,.88);
   color: var(--p6);
@@ -252,6 +273,7 @@ img{ max-width:100%; display:block; }
   flex-wrap:wrap;
   margin-top: 16px;
 }
+
 .chip{
   font-size:13px;
   color: var(--p6);
@@ -271,6 +293,7 @@ img{ max-width:100%; display:block; }
   box-shadow: 0 18px 40px rgba(146,74,74,.12);
   overflow:hidden;
 }
+
 .card__inner{ padding: 22px; }
 
 .panel{
@@ -279,58 +302,47 @@ img{ max-width:100%; display:block; }
   background: linear-gradient(180deg, rgba(255,218,218,.66), rgba(216,165,165,.22));
   box-shadow: var(--shadow2);
 }
+
 .panel__inner{ padding: 22px; }
 
 /* ============ HERO ============ */
-.hero{
-  padding: 48px 0 64px;
-}
-@media (max-width: 768px){
-  .hero{ padding: 32px 0 48px; }
-}
+.hero{ padding: 48px 0 64px; }
+@media (max-width: 768px){ .hero{ padding: 32px 0 48px; } }
 
+/* The hero card container height is controlled here */
 .heroCard{
   display: grid;
   grid-template-columns: 0.92fr 1.08fr;
   gap: 24px;
   align-items: center;
-  padding: 18px; 
-  min-height: 420px;
+  padding: 22px;         /* more inner breathing room */
+  min-height: 440px;     /* card height */
 }
 
 @media (max-width: 900px){
   .heroCard{
-    grid-template-columns: 1fr; /* stack */
+    grid-template-columns: 1fr;
     align-items: stretch;
+    min-height: unset;   /* don’t force huge height on mobile */
+    padding: 18px;
   }
 }
 
-/* hero text padding (THIS stops hugging) */
+/* Right side text padding (stops “hugging” the card) */
 .heroText{
-  padding: 26px 26px 28px;
+  padding: 18px 18px 20px; /* internal padding inside the right column */
 }
 @media (max-width: 768px){
-  .heroText{
-    padding: 22px 18px 24px;
-  }
+  .heroText{ padding: 16px 10px 16px; }
 }
 .heroText p{ max-width: 520px; }
 
-/* If your HTML uses .heroImage wrapper */
-.heroImage{ width: 100%; }
-.heroImage img{
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  object-position: center 50%;
-  border-radius: var(--radius-lg);
-  display:block;
-}
-@media (max-width: 900px){
-  .heroImage img{ height: 280px; }
-}
-
-.photoFrame {
+/* =========================
+   IMPORTANT: SINGLE SOURCE OF TRUTH FOR HERO IMAGE
+   Use .photoFrame in HTML. If you also have .heroImage, it will still work.
+========================= */
+.photoFrame,
+.heroImage{
   width: 100%;
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -339,23 +351,37 @@ img{ max-width:100%; display:block; }
   box-shadow: var(--shadow);
 }
 
-.photoFrame img{
+/* Desktop hero image */
+.photoFrame img,
+.heroImage img{
   width: 100%;
-  height: 360px;
+  height: var(--hero-img-h);
   object-fit: cover;
-  object-position: center 5%;   
+  object-position: center var(--hero-img-pos-desktop);
   display:block;
 }
 
-
+/* Mobile hero image */
 @media (max-width: 900px){
-  .photoFrame img{
-    height: 280px;
-    object-position: center 8%;
+  .photoFrame img,
+  .heroImage img{
+    height: var(--hero-img-h-mobile);
+    object-position: center var(--hero-img-pos-mobile);
   }
 }
 
-
+/* If your crop changes "don’t work", this override guarantees the hero wins.
+   (Scoped to hero only; won’t affect other images.) */
+.heroCard .photoFrame img,
+.heroCard .heroImage img{
+  object-position: center var(--hero-img-pos-desktop) !important;
+}
+@media (max-width: 900px){
+  .heroCard .photoFrame img,
+  .heroCard .heroImage img{
+    object-position: center var(--hero-img-pos-mobile) !important;
+  }
+}
 
 /* ============ FEATURED WORK ============ */
 .featureGrid{
@@ -364,6 +390,7 @@ img{ max-width:100%; display:block; }
   gap: 14px;
   margin-top: 16px;
 }
+
 .feature{
   grid-column: span 6;
   border: 1px solid var(--line);
@@ -372,8 +399,10 @@ img{ max-width:100%; display:block; }
   padding: 16px;
   box-shadow: 0 10px 22px rgba(75,11,11,.08);
 }
+
 .feature h3{ margin:0 0 6px; font-family: var(--serif); }
 .feature p{ margin:0; color: var(--muted); line-height:1.55; font-size:14px; }
+
 .tagRow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
 .tag{
   font-size:12px;
@@ -394,6 +423,7 @@ img{ max-width:100%; display:block; }
   gap: 14px;
   margin-top: 14px;
 }
+
 .skillCard{
   grid-column: span 4;
   border: 1px solid var(--line);
@@ -401,6 +431,7 @@ img{ max-width:100%; display:block; }
   background: rgba(255,255,255,.80);
   padding: 16px;
 }
+
 .skillCard ul{
   margin: 10px 0 0;
   padding-left: 18px;
@@ -414,6 +445,7 @@ img{ max-width:100%; display:block; }
 
 /* ============ TIMELINE ============ */
 .timeline{ display:grid; gap:14px; margin-top: 14px; }
+
 .role{
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
@@ -421,13 +453,16 @@ img{ max-width:100%; display:block; }
   box-shadow: var(--shadow2);
   padding: 18px;
 }
+
 .roleTop{
   display:flex;
   justify-content:space-between;
   gap:12px;
   flex-wrap:wrap;
 }
+
 .role .meta{ color:var(--muted); font-size: 13px; }
+
 .role ul{
   margin: 10px 0 0;
   padding-left: 18px;
@@ -435,7 +470,12 @@ img{ max-width:100%; display:block; }
   line-height: 1.7;
   font-size: 14px;
 }
-hr.soft{ border:none; border-top:1px solid var(--line); margin: 16px 0; }
+
+hr.soft{
+  border:none;
+  border-top:1px solid var(--line);
+  margin: 16px 0;
+}
 
 /* ============ EDUCATION + CERTS ============ */
 .eduGrid{
@@ -461,6 +501,7 @@ hr.soft{ border:none; border-top:1px solid var(--line); margin: 16px 0; }
   gap: 14px;
   margin-top: 14px;
 }
+
 .project{
   grid-column: span 6;
   border: 1px solid var(--line);
@@ -472,15 +513,23 @@ hr.soft{ border:none; border-top:1px solid var(--line); margin: 16px 0; }
   flex-direction:column;
   gap:12px;
 }
-.project p{ margin:0; color:var(--muted); line-height:1.6; font-size:14px; }
+
+.project p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
+}
 .project .tags{ display:flex; gap:8px; flex-wrap:wrap; }
 .project .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:auto; }
+
 @media (max-width: 860px){
   .project{ grid-column: span 12; }
 }
 
 /* ============ FOOTER ============ */
 .footer{ padding: 34px 0 44px; color: var(--muted); }
+
 .footerCard{
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
