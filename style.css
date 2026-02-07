@@ -330,29 +330,30 @@ img{ max-width:100%; display:block; }
   .heroImage img{ height: 280px; }
 }
 
-/* If your HTML uses .photoFrame wrapper (MAIN FIX HERE) */
-.photoFrame{
+.photoFrame {
   width: 100%;
   border-radius: var(--radius-xl);
-  overflow:hidden;
+  overflow: hidden;
   border: 1px solid rgba(75,11,11,.16);
   background: rgba(255,255,255,.6);
   box-shadow: var(--shadow);
 }
 
-/* IMPORTANT: removed aspect-ratio (this caused tiny image on phone) */
-.photoFrame img{
+.photoFrame img {
   width: 100%;
   height: 360px;
   object-fit: cover;
-  display:block;
+  object-position: center 15%;
+  display: block;
 }
 
 @media (max-width: 900px){
   .photoFrame img{
     height: 280px;
+    object-position: center 10%;
   }
 }
+
 
 /* ============ FEATURED WORK ============ */
 .featureGrid{
