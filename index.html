@@ -15,8 +15,6 @@
           <span class="title">Smriti Pandey</span>
         </a>
 
-        <button class="navbtn" data-navbtn>Menu</button>
-
         <nav class="navlinks" data-navlinks>
           <a data-nav href="index.html">Home</a>
           <a data-nav href="summary.html">Summary</a>
@@ -29,10 +27,11 @@
 
   <main class="container">
     <div class="heroGrid">
+      <!-- LEFT: Folder cover -->
       <section class="card p24 folderCover">
         <div class="metaRow">
-          <div class="tiny">PORTFOLIO FILE</div>
-          <div class="tiny">Bangkok, Thailand</div>
+          <div>PORTFOLIO FILE</div>
+          <div>BANGKOK, THAILAND</div>
         </div>
 
         <div style="margin-top:18px;">
@@ -41,15 +40,35 @@
           <div class="divider"></div>
 
           <p class="muted" style="margin:0; line-height:1.75;">
-            Data Analyst with a background in Robotics & AI Engineering — translating complex data into clear insights.
-            Power BI, SQL, Snowflake, Python… plus product/UI experience when needed.
+            Turning complex data into clear, decision-ready insights.
+            Power BI, SQL, Snowflake, Python — with strong product/UI sense when needed.
           </p>
 
           <p class="scriptAccent" style="margin:14px 0 0;">
-            curated work, not clutter.
+            curated work, clean presentation.
           </p>
 
+          <!-- ✅ MAIN AREA TABS (all pages visible) -->
+          <div class="pageTabs">
+            <a class="pageTab active" href="index.html">
+              <span class="pageTabIcon">🏠</span> Home
+            </a>
+
+            <a class="pageTab" href="summary.html">
+              <span class="pageTabIcon">🧾</span> Summary
+            </a>
+
+            <a class="pageTab" href="experience.html">
+              <span class="pageTabIcon">💼</span> Experience
+            </a>
+
+            <a class="pageTab" href="projects.html">
+              <span class="pageTabIcon">📁</span> Projects
+            </a>
+          </div>
+
           <div class="btnrow">
+            <!-- Replace when ready -->
             <a class="btn primary" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
             <a class="btn" href="#" target="_blank" rel="noreferrer">Download CV</a>
             <a class="btn ghost" href="projects.html">View Projects</a>
@@ -57,30 +76,42 @@
         </div>
       </section>
 
+      <!-- RIGHT: Polaroid contact -->
       <aside class="polaroid">
         <img class="avatar" src="./me.jpeg" alt="Profile photo" />
-        <div class="cap">Contact</div>
 
         <div class="divider"></div>
 
+        <div class="h3" style="margin-bottom:8px;">Contact</div>
+
+        <!-- ✅ Updated contact info -->
         <div class="list" style="gap:10px;">
           <div class="itemCard" style="padding:14px;">
             <div class="itemTop">
-              <div class="h3">Email</div>
-              <div class="right">your.email@example.com</div>
+              <div class="h3">📞 Phone</div>
+              <div class="right">(+66) 825690518</div>
             </div>
           </div>
+
           <div class="itemCard" style="padding:14px;">
             <div class="itemTop">
-              <div class="h3">Phone</div>
-              <div class="right">+66 xx-xxx-xxxx</div>
+              <div class="h3">✉️ Email</div>
+              <div class="right">smriti2546@outlook.com</div>
+            </div>
+          </div>
+
+          <div class="itemCard" style="padding:14px;">
+            <div class="itemTop">
+              <div class="h3">📧 Email</div>
+              <div class="right">smritipandey2546@gmail.com</div>
             </div>
           </div>
         </div>
 
         <div class="pills">
-          <a class="pill" href="experience.html">Work</a>
-          <a class="pill" href="summary.html">CV Summary</a>
+          <a class="pill" href="experience.html">💼 Work</a>
+          <a class="pill" href="projects.html">📁 Projects</a>
+          <a class="pill" href="summary.html">🧾 Summary</a>
         </div>
       </aside>
     </div>
@@ -89,6 +120,7 @@
   <footer class="container">
     © <span data-year></span> Smriti Pandey
   </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
