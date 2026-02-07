@@ -294,7 +294,8 @@ img{ max-width:100%; display:block; }
   grid-template-columns: 0.92fr 1.08fr;
   gap: 24px;
   align-items: center;
-  padding: 18px; /* spacing inside white card */
+  padding: 18px; 
+  min-height: 420px;
 }
 
 @media (max-width: 900px){
