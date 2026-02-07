@@ -1,17 +1,54 @@
-(function () {
-  // active nav
-  const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-  document.querySelectorAll("[data-nav]").forEach(a => {
-    const href = (a.getAttribute("href") || "").toLowerCase();
-    if (href === path) a.classList.add("active");
+// Mobile nav toggle
+const navToggle = document.querySelector(".navToggle");
+const nav = document.querySelector(".nav");
+if (navToggle && nav) {
+  navToggle.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("isOpen");
+    navToggle.setAttribute("aria-expanded", String(isOpen));
   });
+}
 
-  // mobile menu
-  const btn = document.querySelector("[data-navbtn]");
-  const links = document.querySelector("[data-navlinks]");
-  if (btn && links) btn.addEventListener("click", () => links.classList.toggle("open"));
-
-  // footer year
-  const y = document.querySelector("[data-year]");
-  if (y) y.textContent = new Date().getFullYear();
+// Copy-to-clipboard buttons
+const toast = (() => {
+  const t = document.createElement("div");
+  t.className = "toast";
+  document.body.appendChild(t);
+  return t;
 })();
+
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add("show");
+  window.clearTimeout(showToast._t);
+  showToast._t = window.setTimeout(()=>toast.classList.remove("show"), 1400);
+}
+
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest("[data-copy]");
+  if(!btn) return;
+
+  const value = btn.getAttribute("data-copy");
+  try{
+    await navigator.clipboard.writeText(value);
+    showToast("Copied ✨");
+  }catch{
+    // fallback
+    const ta = document.createElement("textarea");
+    ta.value = value;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+    showToast("Copied ✨");
+  }
+});
+
+// Close mobile nav when clicking a link
+document.addEventListener("click", (e) => {
+  const a = e.target.closest(".nav a");
+  if(!a) return;
+  if(nav && nav.classList.contains("isOpen")){
+    nav.classList.remove("isOpen");
+    navToggle?.setAttribute("aria-expanded","false");
+  }
+});

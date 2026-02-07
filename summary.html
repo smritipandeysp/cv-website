@@ -3,82 +3,331 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Summary — Smriti Pandey</title>
+  <title>Summary | Smriti Pandey</title>
+  <meta name="description" content="Smriti Pandey — full CV summary: experience, projects, education, certifications, languages, contact." />
   <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="index.html"><span class="seal"></span><span class="title">Smriti Pandey</span></a>
-        <button class="navbtn" data-navbtn>Menu</button>
-        <nav class="navlinks" data-navlinks>
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="summary.html">Summary</a>
-          <a data-nav href="experience.html">Experience</a>
-          <a data-nav href="projects.html">Projects</a>
-        </nav>
-      </div>
+
+  <div class="ribbon">
+    <div class="container ribbon__inner">
+      <div class="ribbon__tag"><span class="ribbon__dot"></span> Full “single source of truth”</div>
+      <div class="ribbon__tag"><span class="ribbon__dot"></span> Data Analyst • Power BI • SQL • Snowflake</div>
+      <div class="ribbon__tag"><span class="ribbon__dot"></span> Robotics & AI Engineering background</div>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark"></span>
+        <span class="brand__name">Smriti Pandey</span>
+      </a>
+
+      <button class="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="summary.html">Summary</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a class="pill" href="mailto:smriti2546@outlook.com">Email</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="card p24">
-      <div class="kicker">Professional Summary</div>
-      <h1 class="h1">A quick read of my CV</h1>
-      <div class="divider"></div>
+  <main>
+    <section class="section">
+      <div class="container grid2">
 
-      <p class="muted" style="margin:0; line-height:1.8;">
-        Data Analyst with a background in Robotics and AI Engineering, combining analytical skills and creativity to translate complex data into accessible insights.
-        Proficient in SQL, Power BI, Snowflake, Python, R, and MATLAB, with experience using AWS and Azure.
-        Comfortable working across data and frontend workflows (React Native, Figma), and recognized for strong communication, collaboration, and problem-solving in multinational teams.
-      </p>
+        <div class="panel">
+          <div class="panel__inner">
+            <div class="kicker"><span class="spark"></span> CV Summary</div>
+            <h1 class="h1">Everything in one place</h1>
+            <p class="lead">
+              Data Analyst with a background in Robotics & AI Engineering, focused on translating complex data into clear,
+              decision-ready insights. Experienced with Power BI, SQL, Snowflake, Python, and analytics workflows —
+              with additional strengths in frontend/UI collaboration and product thinking.
+            </p>
 
-      <div class="pills" style="margin-top:16px;">
-        <span class="pill">Power BI (DAX)</span>
-        <span class="pill">SQL • Snowflake</span>
-        <span class="pill">Python • Analytics</span>
-        <span class="pill">React Native • Figma</span>
-      </div>
-    </section>
-
-    <section class="card p24" style="margin-top:22px;">
-      <h2 class="h2">Education</h2>
-      <div class="list">
-        <div class="itemCard">
-          <div class="itemTop">
-            <div>
-              <div class="h3">B.Eng — Robotics & AI Engineering</div>
-              <div class="muted">KMITL, Thailand</div>
+            <div class="chips">
+              <div class="chip">📍 Bangkok, Thailand</div>
+              <div class="chip">📞 (+66) 825 690 518</div>
+              <div class="chip">✉️ smriti2546@outlook.com</div>
+              <div class="chip">📧 smritipandey2546@gmail.com</div>
             </div>
-            <div class="right">First Class Honors</div>
+
+            <div class="btnRow">
+              <a class="btn primary" href="projects.html">Projects</a>
+              <a class="btn ghost" href="experience.html">Experience</a>
+              <button class="btn soft" data-copy="smriti2546@outlook.com" type="button">Copy Email</button>
+            </div>
+
+            <p class="small muted" style="margin-top:12px;">LinkedIn: (add link when ready)</p>
           </div>
         </div>
 
-        <div class="itemCard">
-          <div class="itemTop">
-            <div>
-              <div class="h3">Indian School Certificate (ISC)</div>
-              <div class="muted">GNFCS, India</div>
+        <div class="card">
+          <div class="card__inner" style="display:grid; gap:16px;">
+            <div class="photoFrame" style="margin-left:0;">
+              <img src="me.jpeg" alt="Smriti Pandey photo" />
             </div>
-            <div class="right">—</div>
+
+            <div class="card" style="background: rgba(255,255,255,.72);">
+              <div class="card__inner">
+                <div class="h3">Primary title</div>
+                <p class="muted" style="margin:0;">Data Analyst</p>
+                <hr class="soft"/>
+                <div class="h3">Background</div>
+                <p class="muted" style="margin:0;">Robotics & AI Engineering</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section">
+      <div class="container">
+        <h2 class="h2">Professional experience</h2>
+
+        <div class="timeline">
+          <div class="role">
+            <div class="roleTop">
+              <div>
+                <h3>Rapida Solutions — Data Analyst</h3>
+                <div class="meta">Thailand • Jan 2026 – Present</div>
+              </div>
+            </div>
+            <ul>
+              <li>Deliver data analytics and BI solutions for multinational retail clients (including YUM! Brands).</li>
+              <li>Design, develop, and maintain Power BI dashboards for regional and management stakeholders.</li>
+              <li>Analyze and validate data using SQL and Snowflake to ensure accuracy and consistency.</li>
+              <li>Collaborate with international cross-functional teams on metrics definition and reporting logic.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="roleTop">
+              <div>
+                <h3>AI TENG (Government Project & Startup) — UI/UX Designer & Frontend Engineer</h3>
+                <div class="meta">Thailand • Aug 2025 – Present</div>
+              </div>
+            </div>
+            <ul>
+              <li>Lead end-to-end UI/UX design and frontend development for a government-backed AI tourism application.</li>
+              <li>Build the mobile frontend using React Native / Expo.</li>
+              <li>Collaborate with AI, backend, and stakeholder teams to deliver a production-ready app.</li>
+            </ul>
+          </div>
+
+          <div class="role">
+            <div class="roleTop">
+              <div>
+                <h3>Krishholiday — Social Media Coordinator</h3>
+                <div class="meta">Thailand • Nov 2021 – Present</div>
+              </div>
+            </div>
+            <ul>
+              <li>Managed social media content and campaigns.</li>
+              <li>Created itineraries and travel-related content.</li>
+              <li>Optimized blog posts and supported marketing strategy execution.</li>
+            </ul>
+            <div class="links">
+              <a class="btn ghost" target="_blank" rel="noopener" href="https://www.facebook.com/krishholidaythailand/">View Facebook</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="card p24" style="margin-top:22px;">
-      <h2 class="h2">Certifications</h2>
-      <div class="list">
-        <div class="itemCard"><div class="h3">AWS Academy Graduate — Cloud Foundations</div></div>
-        <div class="itemCard"><div class="h3">Google Certification — Data-Driven Decision Making</div></div>
-        <div class="itemCard"><div class="h3">Apache Kafka for Data Engineers / Stream Processing</div></div>
-        <div class="itemCard"><div class="h3">MATLAB Certification (Data Analysis & Engineering Applications)</div></div>
+    <!-- INTERNSHIPS / RESEARCH -->
+    <section class="section">
+      <div class="container">
+        <h2 class="h2">Internships & research</h2>
+
+        <div class="timeline">
+          <div class="role">
+            <div class="roleTop">
+              <div>
+                <h3>ExxonMobil — Investment Planning Analyst / Developer (Internship)</h3>
+                <div class="meta">Thailand • May 2024 – Dec 2024</div>
+              </div>
+            </div>
+            <ul>
+              <li>Supported investment planning and economic assessments.</li>
+              <li>Built internal tools and automated reporting workflows.</li>
+              <li>Conducted retrospective competitor and market analysis.</li>
+            </ul>
+            <div class="links">
+              <a class="btn ghost" target="_blank" rel="noopener" href="https://drive.google.com/file/d/101LzYIPsisejkvgynFbjPICxe-U1x589/view">Proof / Document</a>
+            </div>
+          </div>
+
+          <div class="role">
+            <div class="roleTop">
+              <div>
+                <h3>Tokai University — Research Intern (Data Analytics)</h3>
+                <div class="meta">Japan • May 2023 – Jul 2023</div>
+              </div>
+            </div>
+            <ul>
+              <li>Analyzed real-world retail datasets using R and RStudio.</li>
+              <li>Developed an R Shiny web application for descriptive and diagnostic analytics.</li>
+              <li>Focused on sales and promotion performance analysis.</li>
+            </ul>
+            <div class="links">
+              <a class="btn ghost" target="_blank" rel="noopener" href="https://www.canva.com/design/DAFm6CaDdqQ/XPSeSpZw91fFdKe_4sFXEw/view">Internship Deck</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- SKILLS -->
+    <section class="section">
+      <div class="container">
+        <h2 class="h2">Technical skills</h2>
+
+        <div class="skillGrid">
+          <div class="skillCard">
+            <div class="h3">Data & Analytics</div>
+            <ul>
+              <li>Power BI (DAX, dashboards)</li>
+              <li>SQL</li>
+              <li>Snowflake</li>
+              <li>Python</li>
+              <li>R</li>
+              <li>MATLAB</li>
+            </ul>
+          </div>
+
+          <div class="skillCard">
+            <div class="h3">Engineering & AI</div>
+            <ul>
+              <li>Machine Learning</li>
+              <li>Robotics Systems</li>
+              <li>IoT</li>
+            </ul>
+          </div>
+
+          <div class="skillCard">
+            <div class="h3">Frontend / Product</div>
+            <ul>
+              <li>React Native</li>
+              <li>Expo</li>
+              <li>TypeScript</li>
+              <li>Figma</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT LINKS -->
+    <section class="section">
+      <div class="container">
+        <h2 class="h2">Projects (with links)</h2>
+        <p class="muted">More details on the Projects page.</p>
+
+        <div class="projectGrid">
+          <div class="project">
+            <h3>RAI One — Capstone</h3>
+            <p>Full web & mobile system with inventory and role-based access control.</p>
+            <div class="tags">
+              <span class="tag">Web</span><span class="tag">RBAC</span><span class="tag">Product</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" target="_blank" rel="noopener" href="https://apps.rai.kmitl.ac.th">Open</a>
+            </div>
+          </div>
+
+          <div class="project">
+            <h3>Power BI Dashboard (Embedded)</h3>
+            <p>Interactive Power BI report.</p>
+            <div class="tags">
+              <span class="tag">Power BI</span><span class="tag">Dashboard</span><span class="tag">Analytics</span>
+            </div>
+            <div class="actions">
+              <a class="btn primary" target="_blank" rel="noopener" href="https://app.powerbi.com/view?r=eyJrIjoiMzU1ODY2ZTktNDNhMS00ZDU0LWI0MzktYmY0NWVhMTdlNTZmIiwidCI6ImZkMjA2NzE1LTc1MDktNGFlNS05Yjk2LTc2YmI5Nzg4NmE4NCIsImMiOjEwfQ%3D%3D">Open</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION / CERTS / LANG -->
+    <section class="section">
+      <div class="container grid2">
+        <div class="card">
+          <div class="card__inner">
+            <h2 class="h2">Education</h2>
+            <div class="role" style="box-shadow:none;">
+              <div class="roleTop">
+                <div>
+                  <h3>KMITL — B.Eng Robotics & AI Engineering</h3>
+                  <div class="meta">Thailand • First Class Honors</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="role" style="box-shadow:none; margin-top:12px;">
+              <div class="roleTop">
+                <div>
+                  <h3>Guru Nanak Fifth Centenary School (GNFCS)</h3>
+                  <div class="meta">India • ISC Board</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card__inner">
+            <h2 class="h2">Certifications</h2>
+            <ul class="muted" style="line-height:1.9; margin:0; padding-left:18px;">
+              <li>AWS Academy Graduate — Cloud Foundations</li>
+              <li>Google Certification — Data-Driven Decision Making</li>
+              <li>MATLAB Certification (Data Analysis & Engineering Applications)</li>
+              <li>IBM / ETL / Data Pipelines Certifications</li>
+              <li>Hackathon & Internship Completion Certificates (Tokai, ExxonMobil)</li>
+            </ul>
+
+            <hr class="soft"/>
+
+            <h2 class="h2" style="margin-top:0;">Languages</h2>
+            <ul class="muted" style="line-height:1.9; margin:0; padding-left:18px;">
+              <li>English (IELTS 8)</li>
+              <li>Thai</li>
+              <li>Hindi</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="container">© <span data-year></span> Smriti Pandey</footer>
-  <script src="script.js"></script>
+  <footer class="footer">
+    <div class="container">
+      <div class="footerCard">
+        <div>
+          <div class="brand__name" style="font-family:var(--serif); font-size:18px;">Smriti Pandey</div>
+          <div class="small">Summary • Experience • Projects</div>
+        </div>
+        <div class="small">© <span id="year"></span></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

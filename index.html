@@ -3,124 +3,240 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Smriti Pandey — Portfolio</title>
+  <title>Smriti Pandey | Data Analyst</title>
+  <meta name="description" content="Smriti Pandey — Data Analyst in Bangkok. Power BI, SQL, Snowflake, Python. Robotics & AI background. Portfolio, projects, experience." />
   <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="index.html">
-          <span class="seal"></span>
-          <span class="title">Smriti Pandey</span>
-        </a>
 
-        <nav class="navlinks" data-navlinks>
-          <a data-nav href="index.html">Home</a>
-          <a data-nav href="summary.html">Summary</a>
-          <a data-nav href="experience.html">Experience</a>
-          <a data-nav href="projects.html">Projects</a>
-        </nav>
-      </div>
+  <!-- Pinterest-style ribbon -->
+  <div class="ribbon">
+    <div class="container ribbon__inner">
+      <div class="ribbon__tag"><span class="ribbon__dot"></span> Open to opportunities</div>
+      <div class="ribbon__tag"><span class="ribbon__dot"></span> Bangkok, Thailand</div>
+      <div class="ribbon__tag"><span class="ribbon__dot"></span> Power BI • SQL • Snowflake • Python</div>
+      <div class="ribbon__tag"><span class="ribbon__dot"></span> Robotics & AI backbone</div>
+      <div class="ribbon__tag"><span class="ribbon__dot"></span> Calm communicator + strong ownership</div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="index.html">
+        <span class="brand__mark"></span>
+        <span class="brand__name">Smriti Pandey</span>
+      </a>
+
+      <button class="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="summary.html">Summary</a>
+        <a href="experience.html">Experience</a>
+        <a href="projects.html">Projects</a>
+        <a href="#contact">Contact</a>
+        <a class="pill" href="mailto:smriti2546@outlook.com">Email</a>
+      </nav>
     </div>
   </header>
 
-  <main class="container">
-    <div class="heroGrid">
-      <!-- LEFT: Folder cover -->
-      <section class="card p24 folderCover">
-        <div class="metaRow">
-          <div>PORTFOLIO FILE</div>
-          <div>BANGKOK, THAILAND</div>
-        </div>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container grid2">
 
-        <div style="margin-top:18px;">
-          <div class="kicker">Data Analyst</div>
-          <h1 class="h1">Smriti Pandey</h1>
-          <div class="divider"></div>
+        <div class="panel">
+          <div class="panel__inner">
+            <div class="kicker"><span class="spark"></span> Data Analyst • Robotics & AI Engineering</div>
 
-          <p class="muted" style="margin:0; line-height:1.75;">
-            Turning complex data into clear, decision-ready insights.
-            Power BI, SQL, Snowflake, Python — with strong product/UI sense when needed.
-          </p>
+            <h1 class="h1">
+              Tech-first, people-aware:
+              <br/>I turn messy data into <span style="color:var(--espresso)">clear decisions</span>.
+            </h1>
 
-          <p class="scriptAccent" style="margin:14px 0 0;">
-            curated work, clean presentation.
-          </p>
+            <p class="lead">
+              I’m Smriti — a Data Analyst with a Robotics & AI Engineering background.
+              I’m detail-obsessed with data quality, but also empathetic and collaborative —
+              I care about how stakeholders feel when they use a dashboard.
+              I work with Power BI, SQL, Snowflake, and Python to turn complex data into decision-ready stories.
+            </p>
 
-          <!-- ✅ MAIN AREA TABS (all pages visible) -->
-          <div class="pageTabs">
-            <a class="pageTab active" href="index.html">
-              <span class="pageTabIcon">🏠</span> Home
-            </a>
+            <div class="btnRow">
+              <a class="btn primary" href="projects.html">View Projects</a>
+              <a class="btn ghost" href="summary.html">Read Full Summary</a>
+              <button class="btn soft" data-copy="smritipandey2546@gmail.com" type="button">Copy Gmail</button>
+            </div>
 
-            <a class="pageTab" href="summary.html">
-              <span class="pageTabIcon">🧾</span> Summary
-            </a>
+            <div class="chips">
+              <div class="chip">📍 Bangkok, Thailand</div>
+              <div class="chip">📞 (+66) 825 690 518</div>
+              <div class="chip">📧 smriti2546@outlook.com</div>
+            </div>
 
-            <a class="pageTab" href="experience.html">
-              <span class="pageTabIcon">💼</span> Experience
-            </a>
+            <hr class="soft"/>
 
-            <a class="pageTab" href="projects.html">
-              <span class="pageTabIcon">📁</span> Projects
-            </a>
-          </div>
-
-          <div class="btnrow">
-            <!-- Replace when ready -->
-            <a class="btn primary" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="btn" href="#" target="_blank" rel="noreferrer">Download CV</a>
-            <a class="btn ghost" href="projects.html">View Projects</a>
+            <p class="small muted">
+              Calm under pressure • Clear communicator • Loves clean UI • Strong ownership energy
+            </p>
           </div>
         </div>
-      </section>
 
-      <!-- RIGHT: Polaroid contact -->
-      <aside class="polaroid">
-        <img class="avatar" src="./me.jpeg" alt="Profile photo" />
+        <div class="card">
+          <div class="card__inner" style="display:grid; gap:16px; justify-items:end;">
+            <div class="photoFrame">
+              <img src="me.jpeg" alt="Smriti Pandey photo" />
+            </div>
 
-        <div class="divider"></div>
+            <div class="card" style="width:100%; background: rgba(255,255,255,.72);">
+              <div class="card__inner">
+                <div class="h3">Quick highlights</div>
+                <p class="muted" style="margin:0; line-height:1.7;">
+                  • Regional Power BI dashboards for multinational retail clients (YUM! Brands) <br/>
+                  • UI/UX + Frontend for AI TENG (government-backed AI tourism app) <br/>
+                  • Research + analytics tooling experience (Tokai, ExxonMobil)
+                </p>
+              </div>
+            </div>
 
-        <div class="h3" style="margin-bottom:8px;">Contact</div>
+          </div>
+        </div>
 
-        <!-- ✅ Updated contact info -->
-        <div class="list" style="gap:10px;">
-          <div class="itemCard" style="padding:14px;">
-            <div class="itemTop">
-              <div class="h3">📞 Phone</div>
-              <div class="right">(+66) 825690518</div>
+      </div>
+    </section>
+
+    <!-- FEATURED WORK -->
+    <section class="section">
+      <div class="container">
+        <h2 class="h2">Featured work</h2>
+        <p class="muted">A quick snapshot of what I’ve been building recently.</p>
+
+        <div class="featureGrid">
+          <div class="feature">
+            <h3>Rapida Solutions</h3>
+            <p>Power BI dashboards, data validation, and reporting logic for regional stakeholders.</p>
+            <div class="tagRow">
+              <span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">Snowflake</span>
             </div>
           </div>
 
-          <div class="itemCard" style="padding:14px;">
-            <div class="itemTop">
-              <div class="h3">✉️ Email</div>
-              <div class="right">smriti2546@outlook.com</div>
+          <div class="feature">
+            <h3>AI TENG (ไอ้เท่ง)</h3>
+            <p>UI/UX + frontend engineering for a government-backed AI tourism application (React Native / Expo).</p>
+            <div class="tagRow">
+              <span class="tag">UI/UX</span><span class="tag">React Native</span><span class="tag">Product</span>
             </div>
           </div>
 
-          <div class="itemCard" style="padding:14px;">
-            <div class="itemTop">
-              <div class="h3">📧 Email</div>
-              <div class="right">smritipandey2546@gmail.com</div>
+          <div class="feature">
+            <h3>ExxonMobil Internship</h3>
+            <p>Built internal tools and supported investment planning with retrospective analysis.</p>
+            <div class="tagRow">
+              <span class="tag">Automation</span><span class="tag">Analysis</span><span class="tag">Tools</span>
+            </div>
+          </div>
+
+          <div class="feature">
+            <h3>Tokai University Research</h3>
+            <p>R + RStudio + R Shiny app for descriptive + diagnostic analytics (retail datasets).</p>
+            <div class="tagRow">
+              <span class="tag">R</span><span class="tag">R Shiny</span><span class="tag">Data Apps</span>
             </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="pills">
-          <a class="pill" href="experience.html">💼 Work</a>
-          <a class="pill" href="projects.html">📁 Projects</a>
-          <a class="pill" href="summary.html">🧾 Summary</a>
+    <!-- SKILLS -->
+    <section class="section">
+      <div class="container">
+        <h2 class="h2">Skills</h2>
+        <p class="muted">Balanced between analytics, engineering mindset, and product-friendly UI.</p>
+
+        <div class="skillGrid">
+          <div class="skillCard">
+            <div class="h3">Data & Analytics</div>
+            <ul>
+              <li>Power BI (DAX, dashboards)</li>
+              <li>SQL</li>
+              <li>Snowflake</li>
+              <li>Python</li>
+              <li>R</li>
+            </ul>
+          </div>
+
+          <div class="skillCard">
+            <div class="h3">Frontend / Product</div>
+            <ul>
+              <li>React Native / Expo</li>
+              <li>TypeScript</li>
+              <li>Figma</li>
+              <li>UI collaboration</li>
+              <li>Product thinking</li>
+            </ul>
+          </div>
+
+          <div class="skillCard">
+            <div class="h3">Engineering & AI</div>
+            <ul>
+              <li>Robotics systems</li>
+              <li>Machine Learning basics</li>
+              <li>IoT projects</li>
+              <li>MATLAB</li>
+              <li>Systems mindset</li>
+            </ul>
+          </div>
         </div>
-      </aside>
-    </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="panel">
+          <div class="panel__inner">
+            <h2 class="h2">Let’s work together</h2>
+            <p class="lead" style="margin-bottom:10px;">
+              If you want someone who’s both technical and empathetic — I’m your person.
+              I communicate clearly, validate everything, and ship clean work.
+            </p>
+
+            <div class="btnRow">
+              <a class="btn primary" href="mailto:smriti2546@outlook.com">Email (Outlook)</a>
+              <button class="btn ghost" data-copy="(+66) 825 690 518" type="button">Copy Phone</button>
+              <button class="btn ghost" data-copy="smriti2546@outlook.com" type="button">Copy Email</button>
+              <a class="btn soft" href="summary.html">View full CV summary</a>
+            </div>
+
+            <p class="small muted" style="margin-top:10px;">
+              LinkedIn: (add link when ready)
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <footer class="container">
-    © <span data-year></span> Smriti Pandey
+  <footer class="footer">
+    <div class="container">
+      <div class="footerCard">
+        <div>
+          <div class="brand__name" style="font-family:var(--serif); font-size:18px;">Smriti Pandey</div>
+          <div class="small">Data Analyst • Bangkok, Thailand</div>
+        </div>
+        <div class="small">
+          © <span id="year"></span> • Built with HTML/CSS for GitHub Pages
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
