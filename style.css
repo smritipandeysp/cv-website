@@ -22,7 +22,7 @@
   --radius-md: 14px;
 
   --container: 1120px;
-  --pad: 22px;
+  --pad: 16px;
 
   --serif: ui-serif, "Times New Roman", Georgia, serif;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -32,32 +32,26 @@
 html,body{ height:100%; }
 body{
   margin:0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color:#3A1F1F;
+  font-family: var(--sans);
+  color: var(--ink);
 
+  /* lighter + consistent */
   background:
-    radial-gradient(900px 520px at 10% 0%, rgba(255,218,218,0.45), transparent 60%),
-    radial-gradient(700px 420px at 90% 10%, rgba(216,165,165,0.35), transparent 65%),
-    radial-gradient(800px 520px at 50% 100%, rgba(166,102,102,0.22), transparent 70%),
+    radial-gradient(900px 520px at 10% 0%, rgba(255,218,218,.32), transparent 62%),
+    radial-gradient(700px 420px at 90% 8%,  rgba(216,165,165,.22), transparent 66%),
+    radial-gradient(800px 520px at 50% 100%, rgba(166,102,102,.14), transparent 70%),
     #FFFFFF;
 
   background-attachment: fixed;
 }
 
-
-
 a{ color:inherit; text-decoration:none; }
 img{ max-width:100%; display:block; }
 
 .container{
-  width:min(var(--container), calc(100% - 2*var(--pad)));
-  margin:0 auto;
-}
-
-.container{
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 var(--pad);
 }
 
 /* ============ HEADER / NAV ============ */
@@ -262,18 +256,12 @@ img{ max-width:100%; display:block; }
 .section{ padding: 34px 0; }
 
 .card{
-  padding: 0;  
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
   background: rgba(255,255,255,.78);
-  box-shadow: var(--shadow2);
+  box-shadow: 0 18px 40px rgba(146,74,74,.12);
   overflow:hidden;
 }
-
-.card{
-  box-shadow: 0 18px 40px rgba(146,74,74,.12);
-}
-
 .card__inner{ padding: 22px; }
 
 .panel{
@@ -284,94 +272,78 @@ img{ max-width:100%; display:block; }
 }
 .panel__inner{ padding: 22px; }
 
+/* ============ HERO ============ */
 .hero{
   padding: 48px 0 64px;
 }
-
 @media (max-width: 768px){
-  .hero{
-    padding: 32px 0 48px;
-  }
+  .hero{ padding: 32px 0 48px; }
 }
-
-.heroText{
-  padding: 18px 18px 22px;
-}
-
-.heroText p{
-  max-width: 520px;
-}
-
-
-@media (max-width: 768px){
-  .heroText{
-    padding: 18px 16px 20px;
-  }
-}
-
-.heroImage{
-  width: 100%;
-}
-
-.heroImage img{
-  width: 100%;
-  height: 360px;        
-  object-fit: cover;     
-  border-radius: 20px;
-  display: block;
-}
-
-@media (max-width: 900px){
-  .heroImage img{
-    height: 280px;      
-  }
-}
-
-@media (max-width: 768px){
-  .heroImage img{
-    max-height: 320px;
-  }
-}
-
-
-@media (max-width: 768px){
-  .heroText{
-    padding: 20px 18px 24px;
-  }
-}
-
 
 .heroCard{
   display: grid;
   grid-template-columns: 0.92fr 1.08fr;
   gap: 24px;
   align-items: center;
-  padding: 18px;
+  padding: 18px; /* spacing inside white card */
 }
 
 @media (max-width: 900px){
   .heroCard{
-    grid-template-columns: 1fr;   
+    grid-template-columns: 1fr; /* stack */
     align-items: stretch;
   }
 }
 
+/* hero text padding (THIS stops hugging) */
+.heroText{
+  padding: 26px 26px 28px;
+}
+@media (max-width: 768px){
+  .heroText{
+    padding: 22px 18px 24px;
+  }
+}
+.heroText p{ max-width: 520px; }
 
-/* Image frame */
+/* If your HTML uses .heroImage wrapper */
+.heroImage{ width: 100%; }
+.heroImage img{
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  display:block;
+}
+@media (max-width: 900px){
+  .heroImage img{ height: 280px; }
+}
+
+/* If your HTML uses .photoFrame wrapper (MAIN FIX HERE) */
 .photoFrame{
+  width: 100%;
   border-radius: var(--radius-xl);
   overflow:hidden;
   border: 1px solid rgba(75,11,11,.16);
   background: rgba(255,255,255,.6);
   box-shadow: var(--shadow);
 }
+
+/* IMPORTANT: removed aspect-ratio (this caused tiny image on phone) */
 .photoFrame img{
-  width:100%;
-  aspect-ratio: 4/5;
+  width: 100%;
+  height: 360px;
   object-fit: cover;
+  display:block;
 }
 
-/* Featured work cards */
+@media (max-width: 900px){
+  .photoFrame img{
+    height: 280px;
+  }
+}
+
+/* ============ FEATURED WORK ============ */
 .featureGrid{
   display:grid;
   grid-template-columns: repeat(12, 1fr);
@@ -401,7 +373,7 @@ img{ max-width:100%; display:block; }
   .feature{ grid-column: span 12; }
 }
 
-/* Skills */
+/* ============ SKILLS ============ */
 .skillGrid{
   display:grid;
   grid-template-columns: repeat(12, 1fr);
@@ -426,7 +398,7 @@ img{ max-width:100%; display:block; }
   .skillCard{ grid-column: span 12; }
 }
 
-/* Summary timeline */
+/* ============ TIMELINE ============ */
 .timeline{ display:grid; gap:14px; margin-top: 14px; }
 .role{
   border: 1px solid var(--line);
@@ -451,7 +423,7 @@ img{ max-width:100%; display:block; }
 }
 hr.soft{ border:none; border-top:1px solid var(--line); margin: 16px 0; }
 
-/* Education + Certs alignment fix */
+/* ============ EDUCATION + CERTS ============ */
 .eduGrid{
   display:grid;
   grid-template-columns: 1fr 1fr;
@@ -468,7 +440,7 @@ hr.soft{ border:none; border-top:1px solid var(--line); margin: 16px 0; }
   flex-direction:column;
 }
 
-/* Projects */
+/* ============ PROJECTS ============ */
 .projectGrid{
   display:grid;
   grid-template-columns: repeat(12, 1fr);
@@ -493,12 +465,12 @@ hr.soft{ border:none; border-top:1px solid var(--line); margin: 16px 0; }
   .project{ grid-column: span 12; }
 }
 
-/* Footer */
+/* ============ FOOTER ============ */
 .footer{ padding: 34px 0 44px; color: var(--muted); }
 .footerCard{
   border: 1px solid var(--line);
   border-radius: var(--radius-xl);
-  background: linear-gradient(180deg, rgba(255,218,218,.55), rgba(216,165,165,.18));
+  background: linear-gradient(180deg, rgba(255,218,218,.45), rgba(216,165,165,.14));
   padding: 20px;
   display:flex;
   justify-content:space-between;
@@ -507,7 +479,7 @@ hr.soft{ border:none; border-top:1px solid var(--line); margin: 16px 0; }
 }
 .small{ font-size: 13px; }
 
-/* Toast */
+/* ============ TOAST ============ */
 .toast{
   position: fixed;
   left: 50%;
