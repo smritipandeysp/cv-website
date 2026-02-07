@@ -26,11 +26,10 @@
   --serif: ui-serif, "Times New Roman", Georgia, serif;
   --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 
-  /* Hero photo controls (easy to tweak later) */
   --hero-img-h: 380px;         /* desktop image height */
   --hero-img-h-mobile: 280px;  /* mobile image height */
-  --hero-img-pos-desktop: 50%; /* 0% top, 50% center, 100% bottom */
-  --hero-img-pos-mobile: 45%;
+  --hero-img-pos-desktop: 20%; /* 0% top, 50% center, 100% bottom */
+  --hero-img-pos-mobile: 12%;
 }
 
 *{ box-sizing:border-box; }
