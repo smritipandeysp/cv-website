@@ -5,20 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact | Smriti Pandey</title>
   <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
 </head>
 <body>
 
 <header class="header">
-  <div class="container header__inner">
-    <a class="brand" href="index.html">
-      <span class="brand__mark"></span>
-      <span class="brand__name">Smriti Pandey</span>
-    </a>
-
-    <button class="navToggle" aria-label="Open menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+  <div class="container headerInner">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>Smriti Pandey</span>
+    </div>
 
     <nav class="nav">
       <a href="index.html">Home</a>
@@ -29,61 +24,30 @@
   </div>
 </header>
 
-<main>
-  <section class="section">
-    <div class="container">
-
-      <div class="panel">
-        <div class="panel__inner">
-          <div class="kicker"><span class="spark"></span> Contact</div>
-          <h1 class="h1">Contact</h1>
-
-          <p class="lead">
-            For roles, collaborations, or project work — feel free to reach out.
-          </p>
-
-          <div class="btnRow">
-            <a class="btn primary" href="mailto:smriti2546@outlook.com">Email (Outlook)</a>
-
-            <a class="btn ghost" target="_blank"
-               href="https://mail.google.com/mail/?view=cm&fs=1&to=smritipandey2546@gmail.com">
-              Gmail
-            </a>
-
-            <a class="btn soft" target="_blank" rel="noopener"
-               href="https://drive.google.com/file/d/1PZ4FwrOG6SYaZanZz3MYCzAhMVbgZ4u7/view">
-              View CV
-            </a>
-          </div>
-
-          <div class="chips">
-            <div class="chip">📍 Bangkok, Thailand</div>
-            <div class="chip">📞 (+66) 825 690 518</div>
-            <div class="chip">✉️ smriti2546@outlook.com</div>
-          </div>
-
-          <p class="muted" style="margin-top:14px;">
-            LinkedIn: (add link when ready)
-          </p>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-</main>
-
-<footer class="footer">
+<main class="page">
   <div class="container">
-    <div class="footerCard">
-      <div>
-        <div class="brand__name" style="font-family:var(--serif); font-size:18px;">Smriti Pandey</div>
-        <div class="small">Contact</div>
+
+    <div class="card center">
+      <h1>Contact</h1>
+      <p>Open to analytics roles and collaborations.</p>
+
+      <div class="btnRow">
+        <a class="btn primary" href="mailto:smriti2546@outlook.com">Email</a>
+        <a class="btn ghost"
+           href="https://mail.google.com/mail/?view=cm&fs=1&to=smritipandey2546@gmail.com"
+           target="_blank">
+          Gmail
+        </a>
+        <a class="btn soft"
+           href="https://drive.google.com/file/d/1PZ4FwrOG6SYaZanZz3MYCzAhMVbgZ4u7/view"
+           target="_blank">
+          View CV
+        </a>
       </div>
-      <div class="small">© <span id="year"></span></div>
     </div>
+
   </div>
-</footer>
+</main>
 
 </body>
 </html>
