@@ -309,11 +309,22 @@ img{ max-width:100%; display:block; }
   }
 }
 
+.heroImage{
+  width: 100%;
+}
+
 .heroImage img{
   width: 100%;
-  max-height: 420px;
-  object-fit: cover;
+  height: 360px;        
+  object-fit: cover;     
   border-radius: 20px;
+  display: block;
+}
+
+@media (max-width: 900px){
+  .heroImage img{
+    height: 280px;      
+  }
 }
 
 @media (max-width: 768px){
@@ -331,18 +342,20 @@ img{ max-width:100%; display:block; }
 
 
 .heroCard{
-  display:grid;
+  display: grid;
   grid-template-columns: 0.92fr 1.08fr;
-  gap:24px;
-  align-items:center;
-  padding: 18px; 
+  gap: 24px;
+  align-items: center;
+  padding: 18px;
 }
 
-@media (max-width: 768px){
+@media (max-width: 900px){
   .heroCard{
-    padding: 16px; /* mobile */
+    grid-template-columns: 1fr;   
+    align-items: stretch;
   }
 }
+
 
 /* Image frame */
 .photoFrame{
