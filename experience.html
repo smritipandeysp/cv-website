@@ -4,18 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Experience | Smriti Pandey</title>
-  <meta name="description" content="Smriti Pandey — professional experience timeline." />
+  <meta name="description" content="Smriti Pandey — experience timeline." />
   <link rel="stylesheet" href="style.css" />
   <script defer src="script.js"></script>
 </head>
 <body>
-
-  <div class="ribbon">
-    <div class="container ribbon__inner">
-      <div class="ribbon__tag"><span class="ribbon__dot"></span> Experience timeline</div>
-      <div class="ribbon__tag"><span class="ribbon__dot"></span> Analytics • UI/UX • Frontend</div>
-    </div>
-  </div>
 
   <header class="header">
     <div class="container header__inner">
@@ -30,10 +23,9 @@
 
       <nav class="nav">
         <a href="index.html">Home</a>
-        <a href="summary.html">Summary</a>
-        <a href="experience.html">Experience</a>
+        <a class="active" href="experience.html">Experience</a>
         <a href="projects.html">Projects</a>
-        <a class="pill" href="mailto:smriti2546@outlook.com">Email</a>
+        <a class="pill" href="index.html#contact">Contact</a>
       </nav>
     </div>
   </header>
@@ -46,18 +38,22 @@
             <div class="kicker"><span class="spark"></span> Experience</div>
             <h1 class="h1">Where I’ve worked</h1>
             <p class="lead">
-              I like roles where I can combine logic + empathy: build correct reporting,
-              and explain it in a way that makes stakeholders feel confident.
+              Roles where I combine clean logic + warm communication — dashboards that are correct,
+              and explanations that make people confident.
             </p>
-
             <div class="btnRow">
               <a class="btn primary" href="projects.html">View projects</a>
-              <a class="btn ghost" href="summary.html">Full summary</a>
+              <a class="btn ghost" href="index.html#summary">Summary on Home</a>
+              <a class="btn soft" target="_blank" rel="noopener"
+                 href="https://drive.google.com/file/d/1PZ4FwrOG6SYaZanZz3MYCzAhMVbgZ4u7/view?usp=drive_link">
+                View CV
+              </a>
             </div>
           </div>
         </div>
 
         <div class="timeline">
+
           <div class="role">
             <div class="roleTop">
               <div>
@@ -76,7 +72,7 @@
           <div class="role">
             <div class="roleTop">
               <div>
-                <h3>AI TENG (Government Project & Startup) — UI/UX Designer & Frontend Engineer</h3>
+                <h3>AI TENG — UI/UX Designer & Frontend Engineer</h3>
                 <div class="meta">Thailand • Aug 2025 – Present</div>
               </div>
             </div>
@@ -97,7 +93,7 @@
             <ul>
               <li>Managed content and campaigns.</li>
               <li>Created itineraries and travel content.</li>
-              <li>Optimized blog posts and supported marketing strategy execution.</li>
+              <li>Optimized blog posts and supported marketing execution.</li>
             </ul>
             <div class="links">
               <a class="btn ghost" target="_blank" rel="noopener" href="https://www.facebook.com/krishholidaythailand/">Facebook page</a>
@@ -148,7 +144,7 @@
     <div class="container">
       <div class="footerCard">
         <div>
-          <div class="brand__name" style="font-family:var(--serif); font-size:18px;">Smriti Pandey</div>
+          <div class="brand__name" style="font-family:var(--serif); font-size:18px; color:var(--p6);">Smriti Pandey</div>
           <div class="small">Experience</div>
         </div>
         <div class="small">© <span id="year"></span></div>
@@ -156,8 +152,5 @@
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>

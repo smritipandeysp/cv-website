@@ -1,6 +1,6 @@
-// Mobile nav toggle
 const navToggle = document.querySelector(".navToggle");
 const nav = document.querySelector(".nav");
+
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("isOpen");
@@ -8,7 +8,6 @@ if (navToggle && nav) {
   });
 }
 
-// Copy-to-clipboard buttons
 const toast = (() => {
   const t = document.createElement("div");
   t.className = "toast";
@@ -32,7 +31,6 @@ document.addEventListener("click", async (e) => {
     await navigator.clipboard.writeText(value);
     showToast("Copied ✨");
   }catch{
-    // fallback
     const ta = document.createElement("textarea");
     ta.value = value;
     document.body.appendChild(ta);
@@ -43,7 +41,6 @@ document.addEventListener("click", async (e) => {
   }
 });
 
-// Close mobile nav when clicking a link
 document.addEventListener("click", (e) => {
   const a = e.target.closest(".nav a");
   if(!a) return;
@@ -52,3 +49,6 @@ document.addEventListener("click", (e) => {
     navToggle?.setAttribute("aria-expanded","false");
   }
 });
+
+const yearEl = document.getElementById("year");
+if (yearEl) yearEl.textContent = new Date().getFullYear();
