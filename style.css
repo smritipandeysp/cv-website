@@ -71,6 +71,14 @@ img{ max-width:100%; display:block; }
   padding:14px 0;
   gap:18px;
 }
+.header-left {
+  margin-left: 8px;   
+}
+
+.site-name {
+  margin-left: 6px;
+}
+
 .brand{
   display:flex;
   align-items:center;
