@@ -9,21 +9,35 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800;900&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     :root{
-      --bg:#fff7fb;
-      --pink:#ff4fa3;
+      /* Pink theme (keep!) */
+      --bg: #fff7fb;
+      --pink: #ff4fa3;
       --pink2:#ff7ac2;
-      --ink:#241027;
+      --ink: #241027;
       --muted:#6b5b71;
 
-      --card: rgba(255,255,255,0.78);
+      /* Folder palette (pink + warm paper) */
+      --paper: #fff9f2;
+      --paper2:#fff3fb;
+      --folder: #ffe3f0;
+      --folder2:#ffd3e8;
+
+      /* Cover palette */
+      --cover: #2b1626;         /* deep plum */
+      --cover2:#3a1c32;
+      --coverText:#fff7fb;
+
       --stroke: rgba(255,79,163,0.18);
-      --shadow: 0 18px 55px rgba(36,16,39,0.12);
-      --shadowSoft: 0 10px 28px rgba(36,16,39,0.08);
+      --shadow: 0 18px 55px rgba(36,16,39,0.14);
+      --shadowSoft: 0 10px 28px rgba(36,16,39,0.10);
 
       --rXL: 26px;
       --rLG: 20px;
@@ -35,20 +49,21 @@
     body{
       margin:0;
       width:100%;
-      overflow-x:hidden; /* fixes mobile horizontal scroll */
-      font-family:"Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      color:var(--ink);
+      overflow-x:hidden;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(900px 520px at 10% 5%, rgba(255,79,163,0.20), transparent 60%),
+        radial-gradient(900px 520px at 10% 5%, rgba(255,79,163,0.22), transparent 60%),
         radial-gradient(820px 540px at 90% 0%, rgba(255,122,194,0.18), transparent 55%),
         radial-gradient(900px 600px at 50% 100%, rgba(255,47,138,0.14), transparent 55%),
         linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
     }
     a{ color:inherit; text-decoration:none; }
-    img, iframe{ max-width:100%; } /* safety */
-    .container{ max-width:1140px; margin:0 auto; padding:0 18px; }
+    img, iframe{ max-width:100%; }
 
-    /* blobs (don’t cause overflow) */
+    .container{ max-width:1140px; margin:0 auto; padding: 18px; }
+
+    /* Decorative blobs */
     .blob{
       position:absolute;
       width:420px; height:420px;
@@ -56,13 +71,12 @@
       filter: blur(26px);
       opacity:0.55;
       border-radius:999px;
-      z-index:-1;
+      z-index:-2;
       pointer-events:none;
       animation: floaty 12s ease-in-out infinite;
     }
     .blob.one{ top:-150px; left:-150px;
       background: radial-gradient(circle at 30% 30%, rgba(255,79,163,0.95), rgba(255,79,163,0.02) 70%);
-      animation-duration: 12s;
     }
     .blob.two{ top:-170px; right:-180px;
       background: radial-gradient(circle at 30% 30%, rgba(255,122,194,0.95), rgba(255,122,194,0.02) 70%);
@@ -77,207 +91,335 @@
       50%{ transform: translate(18px, 14px) scale(1.03); }
     }
 
-    /* nav */
-    .nav-wrap{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      background: rgba(255,255,255,0.74);
-      border-bottom: 1px solid rgba(255,79,163,0.12);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px; padding:12px 0;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:900; letter-spacing:-0.02em;
-    }
-    .brand-badge{
-      width:38px; height:38px; border-radius:14px;
-      background: linear-gradient(135deg, rgba(255,79,163,1), rgba(255,122,194,1));
-      box-shadow: 0 12px 30px rgba(255,79,163,0.22);
-      display:grid; place-items:center; color:white;
-      flex: 0 0 auto;
-    }
-    .nav-links{
-      display:flex; flex-wrap:wrap; justify-content:center; gap:8px;
-    }
-    .nav-links a{
-      font-weight:800; font-size:0.92rem;
-      color: rgba(36,16,39,0.86);
-      padding:10px 12px; border-radius:999px;
-      transition: transform 180ms ease, background 180ms ease;
-    }
-    .nav-links a:hover{ background: rgba(255,79,163,0.10); transform: translateY(-1px); }
-    .nav-links a.active{
-      background: linear-gradient(135deg, rgba(255,79,163,0.18), rgba(255,122,194,0.12));
-      box-shadow: 0 10px 26px rgba(255,79,163,0.10);
+    /* ===== Folder Frame ===== */
+    .folder{
+      position:relative;
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,79,163,0.16);
+      background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(255,255,255,0.58));
+      overflow:hidden;
+      isolation:isolate;
     }
 
-    /* hero */
-    header.hero{ padding: 44px 0 22px; position:relative; }
-    .hero-wrap{
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      border-radius: var(--rXL);
-      padding: 26px;
-      position:relative;
-      overflow:hidden;
+    /* Folder top lip */
+    .folder::before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height: 84px;
+      background: linear-gradient(90deg, var(--folder), var(--folder2));
+      border-bottom: 1px solid rgba(255,79,163,0.14);
+      z-index: 0;
     }
-    .hero-wrap::after{
+    /* Rounded “tab bump” on top (like file folder) */
+    .folder::after{
+      content:"";
+      position:absolute;
+      top: 18px;
+      left: 52%;
+      width: 260px;
+      height: 62px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255,79,163,0.18), rgba(255,122,194,0.12));
+      border: 1px solid rgba(255,79,163,0.14);
+      z-index: 0;
+      filter: blur(0.2px);
+    }
+
+    /* ===== Tabs (desktop side) ===== */
+    .tabs{
+      position:absolute;
+      top: 120px;
+      right: 14px;
+      z-index: 5;
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .tab{
+      width: 150px;
+      padding: 11px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.68);
+      border: 1px solid rgba(255,79,163,0.18);
+      box-shadow: var(--shadowSoft);
+      font-weight: 900;
+      font-size: 0.92rem;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      transform: translateX(22px);
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      user-select:none;
+      white-space: nowrap;
+    }
+    .tab:hover{ transform: translateX(10px); box-shadow: var(--shadow); }
+    .tab i{ color: var(--pink); width: 18px; text-align:center; }
+    .tab.active{
+      background: linear-gradient(135deg, rgba(255,79,163,0.18), rgba(255,122,194,0.12));
+      transform: translateX(6px);
+    }
+
+    /* Mobile tabs become a top scroll bar */
+    .tabs-mobile{
+      display:none;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.70);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,79,163,0.14);
+    }
+    .tabs-mobile-inner{
+      display:flex;
+      gap: 10px;
+      padding: 10px 12px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width:none;
+    }
+    .tabs-mobile-inner::-webkit-scrollbar{ display:none; }
+    .tab-mini{
+      flex: 0 0 auto;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,79,163,0.16);
+      box-shadow: var(--shadowSoft);
+      font-weight: 900;
+      font-size: 0.9rem;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .tab-mini i{ color: var(--pink); }
+
+    /* ===== Pages ===== */
+    .pages{
+      position:relative;
+      z-index: 1;
+      padding: 108px 22px 24px;
+    }
+
+    .page{
+      background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.66));
+      border: 1px solid rgba(255,79,163,0.14);
+      border-radius: 26px;
+      box-shadow: var(--shadowSoft);
+      padding: 22px;
+      margin-bottom: 18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .page .page-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .page h2{
+      margin:0;
+      font-size: 1.25rem;
+      letter-spacing:-0.02em;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .page h2 i{ color: var(--pink); }
+    .page .hint{
+      color: rgba(36,16,39,0.55);
+      font-weight: 800;
+      font-size: 0.88rem;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+
+    /* ===== Cover page styling ===== */
+    .cover{
+      background: linear-gradient(180deg, rgba(43,22,38,0.98), rgba(58,28,50,0.98));
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--coverText);
+      padding: 30px 26px;
+      min-height: 420px;
+    }
+    .cover::before{
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(720px 240px at 18% 18%, rgba(255,79,163,0.18), transparent 62%),
-        radial-gradient(720px 240px at 85% 0%, rgba(255,122,194,0.14), transparent 58%);
+        radial-gradient(720px 240px at 18% 18%, rgba(255,79,163,0.22), transparent 62%),
+        radial-gradient(720px 240px at 85% 0%, rgba(255,122,194,0.18), transparent 58%);
       pointer-events:none;
+      opacity:0.9;
+    }
+    .cover-inner{ position:relative; z-index:1; }
+
+    .cover-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap: 14px;
+    }
+    .year{
+      font-weight: 900;
+      opacity: 0.9;
+      letter-spacing: 0.04em;
     }
 
-    .hero-top{
-      position:relative; z-index:1;
-      display:flex; align-items:center; justify-content:flex-start;
-      gap: 16px;
-      flex-wrap: wrap;
-      min-width:0;
+    .cover-title{
+      margin-top: 8px;
+      display:grid;
+      gap: 10px;
     }
-    .name-row{
-      display:flex; align-items:center; gap:14px;
-      min-width: 0;
-      flex: 1 1 auto;
+    .cover-script{
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+      opacity: 0.95;
+    }
+    .cover-big{
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      font-weight: 900;
+    }
+    .cover-sub{
+      margin-top: 10px;
+      max-width: 62ch;
+      color: rgba(255,255,255,0.82);
+      font-weight: 600;
+      line-height: 1.65;
+      font-size: 1.02rem;
     }
 
-    /* circular photo beside name */
-    .avatar-ring{
-      width: 86px; height: 86px;
+    /* Paperclip decoration */
+    .paperclip{
+      position:absolute;
+      top: 24px;
+      right: 26px;
+      width: 22px;
+      height: 96px;
       border-radius: 999px;
-      background: linear-gradient(135deg, rgba(255,79,163,0.85), rgba(255,122,194,0.85));
-      padding: 4px;
+      border: 4px solid rgba(255,255,255,0.75);
+      border-left-color: transparent;
+      transform: rotate(8deg);
+      opacity: 0.85;
+    }
+    .paperclip::after{
+      content:"";
+      position:absolute;
+      top: 16px; left: 3px;
+      width: 14px; height: 64px;
+      border-radius: 999px;
+      border: 4px solid rgba(255,255,255,0.45);
+      border-left-color: transparent;
+    }
+
+    /* Cover bottom row */
+    .cover-bottom{
+      margin-top: 18px;
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .avatar-row{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .avatar-ring{
+      width: 66px; height: 66px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,79,163,0.9), rgba(255,122,194,0.9));
+      padding: 3px;
       box-shadow: 0 18px 45px rgba(255,79,163,0.22);
       flex: 0 0 auto;
     }
     .avatar{
-      width: 100%; height: 100%;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.7);
-      overflow: hidden;
-      border: 1px solid rgba(255,79,163,0.18);
-    }
-    .avatar img{
       width:100%; height:100%;
-      object-fit: cover;
-      display:block;
+      border-radius: 999px;
+      overflow:hidden;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.14);
+    }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    .name-block{ min-width:0; }
+    .name-block .name{
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing:-0.02em;
+    }
+    .name-block .role{
+      color: rgba(255,255,255,0.76);
+      font-weight: 650;
+      margin-top: 2px;
+      font-size: 0.95rem;
+      overflow-wrap:anywhere;
     }
 
-    h1{
-      margin:0;
-      font-size: clamp(1.9rem, 3.6vw, 3.0rem);
-      letter-spacing:-0.04em;
-      line-height:1.05;
-      white-space: normal;
-    }
-
-    .sub{
-      margin: 12px 0 0;
-      color: var(--muted);
-      line-height:1.65;
-      font-size:1.02rem;
-      max-width: 80ch;
-      position:relative; z-index:1;
-    }
-
-    .hero-actions{
-      position:relative; z-index:1;
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top: 14px;
+    .cta{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
       align-items:center;
-      justify-content: space-between;
+      justify-content:flex-end;
     }
-
-    .cta-row{ display:flex; flex-wrap:wrap; gap:10px; }
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:10px;
       padding: 11px 15px;
-      border-radius:999px;
-      font-weight:900;
-      font-size:0.95rem;
-      border: 1px solid rgba(255,79,163,0.22);
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255,255,255,0.22);
       transition: transform 180ms ease, box-shadow 180ms ease;
       will-change: transform;
+      color: white;
+      background: rgba(255,255,255,0.10);
     }
     .btn.primary{
       background: linear-gradient(135deg, var(--pink), var(--pink2));
-      color:white; border-color: transparent;
+      border-color: transparent;
       box-shadow: 0 14px 36px rgba(255,79,163,0.26);
     }
-    .btn.primary:hover{ transform: translateY(-1px); box-shadow: 0 18px 44px rgba(255,79,163,0.30); }
-    .btn.ghost{
-      background: rgba(255,255,255,0.65);
-      color: rgba(36,16,39,0.92);
-    }
-    .btn.ghost:hover{ transform: translateY(-1px); box-shadow: var(--shadowSoft); }
+    .btn:hover{ transform: translateY(-1px); box-shadow: 0 18px 44px rgba(0,0,0,0.25); }
 
-    .contact-inline{
+    .contact-pills{
       display:flex; flex-wrap:wrap; gap:10px;
-      max-width:100%;
+      margin-top: 14px;
     }
-    .pill-link{
+    .pill{
       display:inline-flex; align-items:center; gap:10px;
       padding: 10px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.66);
-      border: 1px solid rgba(255,79,163,0.14);
-      box-shadow: var(--shadowSoft);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.16);
       font-weight: 900;
       font-size: 0.92rem;
-      transition: transform 180ms ease, box-shadow 180ms ease;
       max-width: 100%;
       min-width: 0;
     }
-    .pill-link span{
-      overflow-wrap:anywhere;
-    }
-    .pill-link:hover{ transform: translateY(-1px); box-shadow: var(--shadow); }
-    .pill-link i{
+    .pill span{ overflow-wrap:anywhere; }
+    .pill i{
       width: 30px; height:30px;
       border-radius: 999px;
       display:grid; place-items:center;
-      background: rgba(255,79,163,0.12);
-      color: var(--pink);
+      background: rgba(255,255,255,0.16);
+      color: white;
       flex: 0 0 auto;
     }
 
-    .chips{
-      position:relative; z-index:1;
-      display:flex; flex-wrap:wrap; gap:8px;
-      margin-top: 12px;
-      max-width:100%;
-    }
-    .chip{
-      font-size:0.85rem;
-      font-weight:900;
-      color: rgba(36,16,39,0.82);
-      padding:8px 10px;
-      border-radius:999px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(255,79,163,0.14);
-    }
-
-    /* sections */
-    section{ padding: 18px 0; }
-    .section-head{
-      display:flex; align-items:baseline; justify-content:space-between;
-      gap:12px; margin: 12px 0 12px;
-    }
-    .section-title{
-      display:flex; align-items:center; gap:10px;
-      margin:0;
-      font-size: 1.25rem;
-      letter-spacing:-0.02em;
-    }
-    .section-title i{ color: var(--pink); }
-
-    /* grid/cards */
+    /* Content helpers */
+    .muted{ color: var(--muted); line-height:1.7; }
     .grid{
       display:grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -290,11 +432,8 @@
       border-radius: var(--rLG);
       padding: 14px;
       box-shadow: var(--shadowSoft);
-      position:relative;
-      overflow:hidden;
       transition: transform 180ms ease, box-shadow 180ms ease;
-      will-change: transform;
-      min-width: 0;
+      min-width:0;
     }
     .card:hover{ transform: translateY(-2px); box-shadow: var(--shadow); }
 
@@ -327,8 +466,7 @@
       margin:0;
       font-size: 1.0rem;
       letter-spacing:-0.02em;
-      white-space: normal;
-      overflow: hidden;
+      overflow:hidden;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
@@ -350,7 +488,22 @@
     }
     .card:hover .arrow{ transform: translateX(2px); color: rgba(36,16,39,0.78); }
 
-    /* embed */
+    .chips{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 10px;
+      max-width:100%;
+    }
+    .chip{
+      font-size:0.85rem;
+      font-weight:900;
+      color: rgba(36,16,39,0.82);
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,79,163,0.14);
+    }
+
+    /* Power BI embed */
     .embed{
       margin-top: 14px;
       border-radius: var(--rXL);
@@ -362,7 +515,7 @@
     .ratio{ position:relative; width:100%; padding-bottom: 60%; height:0; }
     iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
 
-    /* cert accordion */
+    /* Certifications details */
     details{
       background: rgba(255,255,255,0.74);
       border: 1px solid rgba(255,79,163,0.14);
@@ -382,17 +535,17 @@
     details[open] .sum-right{ transform: rotate(180deg); }
     .cert-links{ margin-top:10px; display:grid; gap:10px; }
 
-    /* languages */
-    .pill{ text-align:center; padding: 14px 12px; font-weight:900; }
-    .pill small{
-      display:block; margin-top:6px;
-      font-weight:800; color: var(--muted); font-size:0.85rem;
+    footer{
+      padding: 14px 0 18px;
+      text-align:center;
+      color: rgba(36,16,39,0.62);
+      font-weight:800;
     }
 
-    /* reveal */
+    /* Reveal animation */
     .reveal{
       opacity:0;
-      transform: translateY(12px) scale(0.99);
+      transform: translateY(10px) scale(0.995);
       transition: opacity 520ms ease, transform 520ms ease;
     }
     .reveal.show{
@@ -400,25 +553,20 @@
       transform: translateY(0) scale(1);
     }
 
-    footer{
-      padding: 22px 0 34px;
-      text-align:center;
-      color: rgba(36,16,39,0.62);
-      font-weight:800;
+    /* Responsive */
+    @media (max-width: 980px){
+      .tabs{ display:none; }
+      .tabs-mobile{ display:block; }
+      .pages{ padding-top: 18px; }
+      .folder::before{ height: 72px; }
     }
-
-    @media (max-width: 900px){
-      .nav{ flex-direction: column; align-items: stretch; }
-      .nav-links{ justify-content:flex-start; }
+    @media (max-width: 560px){
+      .cover{ padding: 22px 18px; }
+      .paperclip{ display:none; }
       .ratio{ padding-bottom: 82%; }
-      .hero-actions{ justify-content:flex-start; }
-    }
-    @media (max-width: 520px){
+      .cta{ width:100%; justify-content:flex-start; }
       .btn{ width:100%; }
-      .pill-link{ width:100%; justify-content:flex-start; }
-      .avatar-ring{ width: 72px; height: 72px; }
-      .hero-wrap{ padding: 18px; }
-      .blob{ width: 320px; height: 320px; }
+      .pill{ width:100%; }
     }
     @media (prefers-reduced-motion: reduce){
       *{ animation:none !important; transition:none !important; }
@@ -432,467 +580,550 @@
   <div class="blob two"></div>
   <div class="blob three"></div>
 
-  <div class="nav-wrap">
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="#top" aria-label="Go to top">
-          <span class="brand-badge"><i class="fa-solid fa-sparkles"></i></span>
-          <span>Smriti Pandey</span>
-        </a>
+  <div class="container">
+    <div class="folder">
 
-        <div class="nav-links" id="navLinks">
-          <a href="#work">Work</a>
-          <a href="#projects">Projects</a>
-          <a href="#certificates">Certifications</a>
-          <a href="#languages">Languages</a>
-          <a href="#education">Education</a>
+      <!-- Desktop side tabs -->
+      <div class="tabs" id="tabsDesktop">
+        <div class="tab" data-target="cover"><i class="fa-solid fa-folder-open"></i> Cover</div>
+        <div class="tab" data-target="summary"><i class="fa-solid fa-user"></i> Summary</div>
+        <div class="tab" data-target="experience"><i class="fa-solid fa-briefcase"></i> Experience</div>
+        <div class="tab" data-target="projects"><i class="fa-solid fa-laptop-code"></i> Projects</div>
+        <div class="tab" data-target="certifications"><i class="fa-solid fa-scroll"></i> Certifications</div>
+        <div class="tab" data-target="languages"><i class="fa-solid fa-language"></i> Languages</div>
+        <div class="tab" data-target="education"><i class="fa-solid fa-user-graduate"></i> Education</div>
+      </div>
+
+      <!-- Mobile top tabs -->
+      <div class="tabs-mobile">
+        <div class="tabs-mobile-inner" id="tabsMobile">
+          <div class="tab-mini" data-target="cover"><i class="fa-solid fa-folder-open"></i> Cover</div>
+          <div class="tab-mini" data-target="summary"><i class="fa-solid fa-user"></i> Summary</div>
+          <div class="tab-mini" data-target="experience"><i class="fa-solid fa-briefcase"></i> Experience</div>
+          <div class="tab-mini" data-target="projects"><i class="fa-solid fa-laptop-code"></i> Projects</div>
+          <div class="tab-mini" data-target="certifications"><i class="fa-solid fa-scroll"></i> Certifications</div>
+          <div class="tab-mini" data-target="languages"><i class="fa-solid fa-language"></i> Languages</div>
+          <div class="tab-mini" data-target="education"><i class="fa-solid fa-user-graduate"></i> Education</div>
         </div>
+      </div>
+
+      <div class="pages">
+
+        <!-- COVER -->
+        <section class="page cover reveal" id="cover">
+          <div class="paperclip" aria-hidden="true"></div>
+
+          <div class="cover-inner">
+            <div class="cover-top">
+              <div style="opacity:.9;font-weight:900;">
+                <i class="fa-solid fa-sparkles"></i>
+              </div>
+              <div class="year">2026</div>
+            </div>
+
+            <div class="cover-title">
+              <div class="cover-script">Smriti Pandey</div>
+              <div class="cover-big">PORTFOLIO</div>
+              <div class="cover-sub">
+                Data Analyst with a Robotics &amp; AI background — mixing analytics, visualization, and frontend design
+                to turn complex information into clear, intuitive experiences.
+              </div>
+            </div>
+
+            <div class="cover-bottom">
+              <div class="avatar-row">
+                <div class="avatar-ring" aria-hidden="true">
+                  <div class="avatar">
+                    <img alt="Smriti Pandey" src="./me.jpeg" loading="lazy"/>
+                  </div>
+                </div>
+                <div class="name-block">
+                  <div class="name">Smriti Pandey</div>
+                  <div class="role">Data Analyst · Robotics &amp; AI Engineering</div>
+                </div>
+              </div>
+
+              <div class="cta">
+                <a class="btn primary" href="https://www.linkedin.com/in/smriti-pandey-395675293/" target="_blank" rel="noopener">
+                  <i class="fa-brands fa-linkedin"></i> LinkedIn
+                </a>
+                <a class="btn" href="https://drive.google.com/file/d/1PZ4FwrOG6SYaZanZz3MYCzAhMVbgZ4u7/view?usp=sharing" target="_blank" rel="noopener">
+                  <i class="fa-solid fa-file-arrow-down"></i> CV
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-pills">
+              <a class="pill" href="mailto:smriti2546@outlook.com">
+                <i class="fa-solid fa-envelope"></i><span>smriti2546@outlook.com</span>
+              </a>
+              <a class="pill" href="tel:+66825690518">
+                <i class="fa-solid fa-phone"></i><span>+66 82 569 0518</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUMMARY + SKILLS -->
+        <section class="page reveal" id="summary">
+          <div class="page-top">
+            <div>
+              <h2><i class="fa-solid fa-user"></i> Professional Summary</h2>
+              <div class="muted">
+                I’m a Data Analyst with a background in Robotics and AI Engineering who enjoys mixing analytical thinking with creativity
+                to build data-driven solutions that are easy to understand. I work across analytics, visualization, and frontend design,
+                and I love turning complex information into clear, intuitive experiences people actually enjoy using.
+              </div>
+
+              <div class="chips">
+                <span class="chip"><i class="fa-solid fa-chart-column"></i> Analytics</span>
+                <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> Visualization</span>
+                <span class="chip"><i class="fa-solid fa-code"></i> Frontend</span>
+                <span class="chip"><i class="fa-solid fa-robot"></i> Robotics + AI</span>
+              </div>
+            </div>
+            <div class="hint">Tab: Summary</div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-database"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Data &amp; BI</h3>
+                    <p>SQL · Snowflake · Power BI · DAX · Dashboards · Data Modeling</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-brain"></i></div>
+                  <div style="min-width:0;">
+                    <h3>ML / Analytics</h3>
+                    <p>Python · R · TensorFlow · scikit-learn · EDA · Predictive Modeling</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-layer-group"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Frontend / Product</h3>
+                    <p>React · TypeScript · UI Design · Figma · Clean UX</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section class="page reveal" id="experience">
+          <div class="page-top">
+            <h2><i class="fa-solid fa-briefcase"></i> Professional Experience</h2>
+            <div class="hint">Tab: Experience</div>
+          </div>
+
+          <div class="grid">
+            <a class="card" href="https://drive.google.com/file/d/101LzYIPsisejkvgynFbjPICxe-U1x589/view" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-building-columns"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Investment Planning Analyst — ExxonMobil</h3>
+                    <p>May–Dec 2024 · Streamlined economic assessments &amp; led strategy analytics.</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.canva.com/design/DAFm6CaDdqQ/XPSeSpZw91fFdKe_4sFXEw/view" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-flask"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Research Intern — Tokai University</h3>
+                    <p>May–July 2023 · Developed R Shiny apps for retail data analysis.</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.facebook.com/krishholidaythailand/" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-bullhorn"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Social Media Coordinator — Krishholiday</h3>
+                    <p>Nov 2021–Present · Branding, content, and itinerary design.</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+          </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="page reveal" id="projects">
+          <div class="page-top">
+            <h2><i class="fa-solid fa-laptop-code"></i> Projects</h2>
+            <div class="hint">Tab: Projects</div>
+          </div>
+
+          <div class="grid">
+            <a class="card" href="https://apps.rai.kmitl.ac.th/signin" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-globe"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Capstone — RAI One</h3>
+                    <p>Web app · Inventory &amp; role-based modules</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.tiktok.com/@paopaojeans/video/7304018543983725829?_r=1&_t=ZS-8vc7Gh7uR3Q" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-robot"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Mini Delivery Robot</h3>
+                    <p>Robotics · Build &amp; demo</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.canva.com/design/DAFhdcxpvys/8PFke3-t-MxRou6QelBj8g/view" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-heart-pulse"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Heart Disease Prediction</h3>
+                    <p>ML · Classification + insights</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.youtube.com/watch?v=aOwOn5XmFOc" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-road"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Line Following Robot</h3>
+                    <p>Controls · Sensors + logic</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.canva.com/design/DAFULn2eqR8/_eNEy6JkVa1KPEUlGjFRiQ/view" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-seedling"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Automatic Crop Grower</h3>
+                    <p>IoT · Automation concept</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.canva.com/design/DAGk61EUASI/uD7j3B6C3PGCH9C_kqhQPg/view" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-hand"></i></div>
+                  <div style="min-width:0;">
+                    <h3>5DOF Robot Arm</h3>
+                    <p>Mechanics · Motion + design</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.youtube.com/watch?v=b3QBj6ZcmqE" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-plane"></i></div>
+                  <div style="min-width:0;">
+                    <h3>TraveLink App</h3>
+                    <p>App · Travel concept demo</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.youtube.com/watch?v=uMpFRFzd7BM" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-bullseye"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Object Tracking</h3>
+                    <p>Vision · Tracking pipeline</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+
+            <a class="card" href="https://www.canva.com/design/DAFulLobQWk/0q73wmeTR0WpRayAoDLZJg/view?mode=prototype" target="_blank" rel="noopener">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-city"></i></div>
+                  <div style="min-width:0;">
+                    <h3>Smart City — SafeLink</h3>
+                    <p>Prototype · Safety reporting app</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-arrow-right arrow"></i>
+              </div>
+            </a>
+          </div>
+
+          <div style="margin-top:16px;">
+            <h2 style="margin:0; font-size:1.15rem; display:flex; align-items:center; gap:10px;">
+              <i class="fa-solid fa-chart-column" style="color:var(--pink);"></i> Power BI
+            </h2>
+            <div class="embed">
+              <div class="ratio">
+                <iframe
+                  title="Data Analysis"
+                  src="https://app.powerbi.com/view?r=eyJrIjoiMzU1ODY2ZTktNDNhMS00ZDU0LWI0MzktYmY0NWVhMTdlNTZmIiwidCI6ImZkMjA2NzE1LTc1MDktNGFlNS05Yjk2LTc2YmI5Nzg4NmE4NCIsImMiOjEwfQ%3D%3D"
+                  allowFullScreen="true">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CERTIFICATIONS -->
+        <section class="page reveal" id="certifications">
+          <div class="page-top">
+            <h2><i class="fa-solid fa-scroll"></i> Certifications</h2>
+            <div class="hint">Tab: Certifications</div>
+          </div>
+
+          <details>
+            <summary>
+              <span class="sum-left">
+                <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-cloud"></i></span>
+                AWS / Cloud
+              </span>
+              <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
+            </summary>
+            <div class="cert-links">
+              <a class="card" href="https://drive.google.com/file/d/118oqHbWpdNqdbKUIansM0xrjNwn_Hn_n/view" target="_blank" rel="noopener">
+                <div class="card-row">
+                  <div class="card-left">
+                    <div class="ico"><i class="fa-brands fa-aws"></i></div>
+                    <div style="min-width:0;">
+                      <h3>AWS Cloud Foundations</h3>
+                      <p>Certificate</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </div>
+              </a>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="sum-left">
+                <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-chart-line"></i></span>
+                Data / Analytics
+              </span>
+              <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
+            </summary>
+            <div class="cert-links">
+              <a class="card" href="https://drive.google.com/file/d/1l9BFr4eYkgMYYZPpoL-rzGd3po0JVdRm/view" target="_blank" rel="noopener">
+                <div class="card-row">
+                  <div class="card-left">
+                    <div class="ico"><i class="fa-brands fa-google"></i></div>
+                    <div style="min-width:0;">
+                      <h3>Google: Data Driven Decisions</h3>
+                      <p>Certificate</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </div>
+              </a>
+
+              <a class="card" href="https://drive.google.com/file/d/1VJK0ny4NcL9DlVTxpR-0S4Y4kVPqI58-/view" target="_blank" rel="noopener">
+                <div class="card-row">
+                  <div class="card-left">
+                    <div class="ico"><i class="fa-brands fa-google"></i></div>
+                    <div style="min-width:0;">
+                      <h3>Google: Data Everywhere</h3>
+                      <p>Certificate</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </div>
+              </a>
+
+              <a class="card" href="https://drive.google.com/file/d/1xE4Tj2Ig5K4lb8OSFWRzgDhUI8upKA8-/view" target="_blank" rel="noopener">
+                <div class="card-row">
+                  <div class="card-left">
+                    <div class="ico"><i class="fa-solid fa-square-root-variable"></i></div>
+                    <div style="min-width:0;">
+                      <h3>MATLAB: Data Analysis</h3>
+                      <p>Certificate</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </div>
+              </a>
+
+              <a class="card" href="https://drive.google.com/file/d/1xSpqNnBmDpH8bctnKrRrHdr6D6MEVg2X/view?usp=sharing" target="_blank" rel="noopener">
+                <div class="card-row">
+                  <div class="card-left">
+                    <div class="ico"><i class="fa-solid fa-diagram-project"></i></div>
+                    <div style="min-width:0;">
+                      <h3>IBM: ETL &amp; Data Pipelines (Shell, Airflow, Kafka)</h3>
+                      <p>Certificate</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </div>
+              </a>
+            </div>
+          </details>
+
+          <details>
+            <summary>
+              <span class="sum-left">
+                <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-award"></i></span>
+                Internships / Events
+              </span>
+              <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
+            </summary>
+            <div class="cert-links">
+              <a class="card" href="https://drive.google.com/file/d/1x2AXIKlpU5pcPr9KHFvf1-kHxhUJW238/view?usp=sharing" target="_blank" rel="noopener">
+                <div class="card-row">
+                  <div class="card-left">
+                    <div class="ico"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <div style="min-width:0;">
+                      <h3>Tokai Completion Certificate</h3>
+                      <p>Certificate</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </div>
+              </a>
+
+              <a class="card" href="https://drive.google.com/file/d/17oP6qESxnzTeaLZLpxsJM2T-b0xpI4-2/view?usp=sharing" target="_blank" rel="noopener">
+                <div class="card-row">
+                  <div class="card-left">
+                    <div class="ico"><i class="fa-solid fa-people-group"></i></div>
+                    <div style="min-width:0;">
+                      <h3>InterHack Tourism Hackathon</h3>
+                      <p>Certificate</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </div>
+              </a>
+
+              <a class="card" href="https://drive.google.com/file/d/13OVtDwd0mTy1wLKxUQb_Y8RHovW4jRNw/view?usp=sharing" target="_blank" rel="noopener">
+                <div class="card-row">
+                  <div class="card-left">
+                    <div class="ico"><i class="fa-solid fa-briefcase"></i></div>
+                    <div style="min-width:0;">
+                      <h3>ExxonMobil Internship</h3>
+                      <p>Certificate</p>
+                    </div>
+                  </div>
+                  <i class="fa-solid fa-arrow-right arrow"></i>
+                </div>
+              </a>
+            </div>
+          </details>
+        </section>
+
+        <!-- LANGUAGES -->
+        <section class="page reveal" id="languages">
+          <div class="page-top">
+            <h2><i class="fa-solid fa-language"></i> Languages</h2>
+            <div class="hint">Tab: Languages</div>
+          </div>
+
+          <div class="grid">
+            <div class="card" style="text-align:center;font-weight:900;">
+              English
+              <div style="margin-top:6px;color:var(--muted);font-weight:800;font-size:0.9rem;">Fluent (IELTS 8)</div>
+            </div>
+            <div class="card" style="text-align:center;font-weight:900;">
+              Thai
+              <div style="margin-top:6px;color:var(--muted);font-weight:800;font-size:0.9rem;">Fluent</div>
+            </div>
+            <div class="card" style="text-align:center;font-weight:900;">
+              Hindi
+              <div style="margin-top:6px;color:var(--muted);font-weight:800;font-size:0.9rem;">Fluent</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section class="page reveal" id="education">
+          <div class="page-top">
+            <h2><i class="fa-solid fa-user-graduate"></i> Education</h2>
+            <div class="hint">Tab: Education</div>
+          </div>
+
+          <div class="grid">
+            <div class="card">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-school"></i></div>
+                  <div style="min-width:0;">
+                    <h3>B.E. in Robotics &amp; AI — KMITL, Thailand</h3>
+                    <p>Aug 2021 – Apr 2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-row">
+                <div class="card-left">
+                  <div class="ico"><i class="fa-solid fa-book-open"></i></div>
+                  <div style="min-width:0;">
+                    <h3>ISC Board Highschool — G.N.F.C.S, India</h3>
+                    <p>Mar 2013 – Apr 2021</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer>© 2026 Smriti Pandey</footer>
       </div>
     </div>
   </div>
 
-  <header class="hero" id="top">
-    <div class="container">
-      <div class="hero-wrap reveal">
-        <div class="hero-top">
-          <div class="name-row">
-            <div class="avatar-ring" aria-hidden="true">
-              <div class="avatar">
-                <img alt="Smriti Pandey" src="./me.jpeg" loading="lazy" />
-              </div>
-            </div>
-
-            <div style="min-width:0;">
-              <h1>Smriti Pandey</h1>
-            </div>
-          </div>
-        </div>
-
-        <p class="sub">
-          I’m a Data Analyst with a background in Robotics and AI Engineering who enjoys mixing analytical thinking with creativity to build data-driven solutions that are easy to understand. I work across analytics, visualization, and frontend design, and I love turning complex information into clear, intuitive experiences people actually enjoy using.
-        </p>
-
-        <div class="hero-actions">
-          <div class="cta-row">
-            <a class="btn primary" href="https://www.linkedin.com/in/smriti-pandey-395675293/" target="_blank" rel="noopener">
-              <i class="fa-brands fa-linkedin"></i> LinkedIn
-            </a>
-            <a class="btn ghost" href="https://drive.google.com/file/d/1PZ4FwrOG6SYaZanZz3MYCzAhMVbgZ4u7/view?usp=sharing" target="_blank" rel="noopener">
-              <i class="fa-solid fa-file-arrow-down"></i> CV
-            </a>
-          </div>
-
-          <div class="contact-inline">
-            <a class="pill-link" href="mailto:smriti2546@outlook.com">
-              <i class="fa-solid fa-envelope"></i>
-              <span>smriti2546@outlook.com</span>
-            </a>
-            <a class="pill-link" href="tel:+66825690518">
-              <i class="fa-solid fa-phone"></i>
-              <span>+66 82 569 0518</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="chips">
-          <span class="chip"><i class="fa-solid fa-chart-column"></i> Analytics</span>
-          <span class="chip"><i class="fa-solid fa-wand-magic-sparkles"></i> Visualization</span>
-          <span class="chip"><i class="fa-solid fa-code"></i> Frontend</span>
-          <span class="chip"><i class="fa-solid fa-robot"></i> Robotics + AI</span>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section id="work">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
-      </div>
-
-      <div class="grid">
-        <a class="card reveal" href="https://drive.google.com/file/d/101LzYIPsisejkvgynFbjPICxe-U1x589/view" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-building-columns"></i></div>
-              <div style="min-width:0;">
-                <h3>Investment Planning Analyst — ExxonMobil</h3>
-                <p>May–Dec 2024 · Streamlined economic assessments &amp; led strategy analytics.</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.canva.com/design/DAFm6CaDdqQ/XPSeSpZw91fFdKe_4sFXEw/view" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-flask"></i></div>
-              <div style="min-width:0;">
-                <h3>Research Intern — Tokai University</h3>
-                <p>May–July 2023 · Developed R Shiny apps for retail data analysis.</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.facebook.com/krishholidaythailand/" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-bullhorn"></i></div>
-              <div style="min-width:0;">
-                <h3>Social Media Coordinator — Krishholiday</h3>
-                <p>Nov 2021–Present · Branding, content, and itinerary design.</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Projects</h2>
-      </div>
-
-      <div class="grid">
-        <a class="card reveal" href="https://apps.rai.kmitl.ac.th/signin" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-globe"></i></div>
-              <div style="min-width:0;">
-                <h3>Capstone — RAI One</h3>
-                <p>Web app · Inventory &amp; role-based modules</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.tiktok.com/@paopaojeans/video/7304018543983725829?_r=1&_t=ZS-8vc7Gh7uR3Q" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-robot"></i></div>
-              <div style="min-width:0;">
-                <h3>Mini Delivery Robot</h3>
-                <p>Robotics · Build &amp; demo</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.canva.com/design/DAFhdcxpvys/8PFke3-t-MxRou6QelBj8g/view" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-heart-pulse"></i></div>
-              <div style="min-width:0;">
-                <h3>Heart Disease Prediction</h3>
-                <p>ML · Classification + insights</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.youtube.com/watch?v=aOwOn5XmFOc" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-road"></i></div>
-              <div style="min-width:0;">
-                <h3>Line Following Robot</h3>
-                <p>Controls · Sensors + logic</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.canva.com/design/DAFULn2eqR8/_eNEy6JkVa1KPEUlGjFRiQ/view" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-seedling"></i></div>
-              <div style="min-width:0;">
-                <h3>Automatic Crop Grower</h3>
-                <p>IoT · Automation concept</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.canva.com/design/DAGk61EUASI/uD7j3B6C3PGCH9C_kqhQPg/view" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-hand"></i></div>
-              <div style="min-width:0;">
-                <h3>5DOF Robot Arm</h3>
-                <p>Mechanics · Motion + design</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.youtube.com/watch?v=b3QBj6ZcmqE" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-plane"></i></div>
-              <div style="min-width:0;">
-                <h3>TraveLink App</h3>
-                <p>App · Travel concept demo</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.youtube.com/watch?v=uMpFRFzd7BM" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-bullseye"></i></div>
-              <div style="min-width:0;">
-                <h3>Object Tracking</h3>
-                <p>Vision · Tracking pipeline</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-
-        <a class="card reveal" href="https://www.canva.com/design/DAFulLobQWk/0q73wmeTR0WpRayAoDLZJg/view?mode=prototype" target="_blank" rel="noopener">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-city"></i></div>
-              <div style="min-width:0;">
-                <h3>Smart City — SafeLink</h3>
-                <p>Prototype · Safety reporting app</p>
-              </div>
-            </div>
-            <i class="fa-solid fa-arrow-right arrow"></i>
-          </div>
-        </a>
-      </div>
-
-      <div class="section-head reveal" style="margin-top:18px;">
-        <h2 class="section-title"><i class="fa-solid fa-chart-column"></i> Power BI</h2>
-      </div>
-
-      <div class="embed reveal">
-        <div class="ratio">
-          <iframe
-            title="Data Analysis"
-            src="https://app.powerbi.com/view?r=eyJrIjoiMzU1ODY2ZTktNDNhMS00ZDU0LWI0MzktYmY0NWVhMTdlNTZmIiwidCI6ImZkMjA2NzE1LTc1MDktNGFlNS05Yjk2LTc2YmI5Nzg4NmE4NCIsImMiOjEwfQ%3D%3D"
-            allowFullScreen="true">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="certificates">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title"><i class="fa-solid fa-scroll"></i> Certifications</h2>
-      </div>
-
-      <details class="reveal">
-        <summary>
-          <span class="sum-left">
-            <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-cloud"></i></span>
-            AWS / Cloud
-          </span>
-          <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
-        </summary>
-        <div class="cert-links">
-          <a class="card" href="https://drive.google.com/file/d/118oqHbWpdNqdbKUIansM0xrjNwn_Hn_n/view" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-brands fa-aws"></i></div>
-                <div style="min-width:0;">
-                  <h3>AWS Cloud Foundations</h3>
-                  <p>Certificate</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
-            </div>
-          </a>
-        </div>
-      </details>
-
-      <details class="reveal">
-        <summary>
-          <span class="sum-left">
-            <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-chart-line"></i></span>
-            Data / Analytics
-          </span>
-          <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
-        </summary>
-        <div class="cert-links">
-          <a class="card" href="https://drive.google.com/file/d/1l9BFr4eYkgMYYZPpoL-rzGd3po0JVdRm/view" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-brands fa-google"></i></div>
-                <div style="min-width:0;">
-                  <h3>Google: Data Driven Decisions</h3>
-                  <p>Certificate</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
-            </div>
-          </a>
-
-          <a class="card" href="https://drive.google.com/file/d/1VJK0ny4NcL9DlVTxpR-0S4Y4kVPqI58-/view" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-brands fa-google"></i></div>
-                <div style="min-width:0;">
-                  <h3>Google: Data Everywhere</h3>
-                  <p>Certificate</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
-            </div>
-          </a>
-
-          <a class="card" href="https://drive.google.com/file/d/1xE4Tj2Ig5K4lb8OSFWRzgDhUI8upKA8-/view" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-solid fa-square-root-variable"></i></div>
-                <div style="min-width:0;">
-                  <h3>MATLAB: Data Analysis</h3>
-                  <p>Certificate</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
-            </div>
-          </a>
-
-          <a class="card" href="https://drive.google.com/file/d/1xSpqNnBmDpH8bctnKrRrHdr6D6MEVg2X/view?usp=sharing" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-solid fa-diagram-project"></i></div>
-                <div style="min-width:0;">
-                  <h3>IBM: ETL &amp; Data Pipelines (Shell, Airflow, Kafka)</h3>
-                  <p>Certificate</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
-            </div>
-          </a>
-        </div>
-      </details>
-
-      <details class="reveal">
-        <summary>
-          <span class="sum-left">
-            <span class="ico" style="width:36px;height:36px;border-radius:14px;"><i class="fa-solid fa-award"></i></span>
-            Internships / Events
-          </span>
-          <span class="sum-right"><i class="fa-solid fa-chevron-down"></i></span>
-        </summary>
-        <div class="cert-links">
-          <a class="card" href="https://drive.google.com/file/d/1x2AXIKlpU5pcPr9KHFvf1-kHxhUJW238/view?usp=sharing" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-solid fa-graduation-cap"></i></div>
-                <div style="min-width:0;">
-                  <h3>Tokai Completion Certificate</h3>
-                  <p>Certificate</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
-            </div>
-          </a>
-
-          <a class="card" href="https://drive.google.com/file/d/17oP6qESxnzTeaLZLpxsJM2T-b0xpI4-2/view?usp=sharing" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-solid fa-people-group"></i></div>
-                <div style="min-width:0;">
-                  <h3>InterHack Tourism Hackathon</h3>
-                  <p>Certificate</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
-            </div>
-          </a>
-
-          <a class="card" href="https://drive.google.com/file/d/13OVtDwd0mTy1wLKxUQb_Y8RHovW4jRNw/view?usp=sharing" target="_blank" rel="noopener">
-            <div class="card-row">
-              <div class="card-left">
-                <div class="ico"><i class="fa-solid fa-briefcase"></i></div>
-                <div style="min-width:0;">
-                  <h3>ExxonMobil Internship</h3>
-                  <p>Certificate</p>
-                </div>
-              </div>
-              <i class="fa-solid fa-arrow-right arrow"></i>
-            </div>
-          </a>
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <section id="languages">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title"><i class="fa-solid fa-language"></i> Languages</h2>
-      </div>
-
-      <div class="grid">
-        <div class="card pill reveal">English <small>Fluent (IELTS 8)</small></div>
-        <div class="card pill reveal">Thai <small>Fluent</small></div>
-        <div class="card pill reveal">Hindi <small>Fluent</small></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="container">
-      <div class="section-head reveal">
-        <h2 class="section-title"><i class="fa-solid fa-user-graduate"></i> Education</h2>
-      </div>
-
-      <div class="grid">
-        <div class="card reveal">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-school"></i></div>
-              <div style="min-width:0;">
-                <h3>B.E. in Robotics &amp; AI — KMITL, Thailand</h3>
-                <p>Aug 2021 – Apr 2025</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card reveal">
-          <div class="card-row">
-            <div class="card-left">
-              <div class="ico"><i class="fa-solid fa-book-open"></i></div>
-              <div style="min-width:0;">
-                <h3>ISC Board Highschool — G.N.F.C.S, India</h3>
-                <p>Mar 2013 – Apr 2021</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2025 Smriti Pandey
-  </footer>
-
   <script>
-    // reveal
+    // Reveal on scroll
     const revealEls = Array.from(document.querySelectorAll('.reveal'));
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
@@ -904,24 +1135,42 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => io.observe(el));
 
-    // active nav
-    const navLinks = Array.from(document.querySelectorAll('#navLinks a'));
-    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    // Tabs scroll + active tab highlight
+    const sections = ["cover","summary","experience","projects","certifications","languages","education"]
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
 
-    const setActive = () => {
-      const y = window.scrollY + 130;
-      let current = sections[0]?.id || '';
-      for (const sec of sections) if (sec.offsetTop <= y) current = sec.id;
-      navLinks.forEach(a => {
-        const target = (a.getAttribute('href') || '').replace('#','');
-        a.classList.toggle('active', target === current);
-      });
-    };
-    window.addEventListener('scroll', setActive, { passive:true });
-    window.addEventListener('load', setActive);
+    const desktopTabs = Array.from(document.querySelectorAll('#tabsDesktop .tab'));
+    const mobileTabs  = Array.from(document.querySelectorAll('#tabsMobile .tab-mini'));
 
-    // extra safety: if anything still overflows, this prevents sideways scroll on iOS
-    document.addEventListener('touchmove', () => {}, { passive:true });
+    function scrollToId(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 18;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+
+    function setActive(id){
+      desktopTabs.forEach(t => t.classList.toggle("active", t.dataset.target === id));
+      mobileTabs.forEach(t => t.classList.toggle("active", t.dataset.target === id));
+    }
+
+    [...desktopTabs, ...mobileTabs].forEach(tab => {
+      tab.addEventListener("click", () => scrollToId(tab.dataset.target));
+    });
+
+    const spy = new IntersectionObserver((entries) => {
+      // pick the most visible section
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if(visible) setActive(visible.target.id);
+    }, { threshold: [0.25, 0.5, 0.75] });
+
+    sections.forEach(sec => spy.observe(sec));
+
+    // default active
+    window.addEventListener("load", () => setActive("cover"));
   </script>
 </body>
 </html>
